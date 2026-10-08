@@ -1,0 +1,1006 @@
+<!doctype html><html data-theme="light"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Cabin Tòa D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap">
+<style>
+:root{
+  --ground:#F0EEEE; --surface:#FFFFFF; --surface-2:#F7F5F5; --ink:#1C1718; --muted:#6A6263; --line:#DDD7D7;
+  --accent:#B5121B; --accent-ink:#FFFFFF; --accent-soft:#FBE7E8;
+  --sel:#1C1718; --sel-ink:#FFFFFF;
+  --free:#1C6E45; --free-bg:#DDF1E5; --busy:#B23A1E; --busy-bg:#FBE3DA; --use-bg:#F4CDBF;
+  --part:#94580A; --part-bg:#FBEBD2; --past-bg:#E7E4E4; --past-ink:#958C8D;
+  --plate:#A5141C; --plate-rib:#8F1017; --plate-ink:#FFF1F1;
+  --tag:#E9B949; --tag-ink:#1D1606;
+  --lock-bg:#1E2326; --lock-ink:#EEF3F1; --lock-screen:#2A3135; --lock-line:#4A5459; --lock-ok:#3FCB8A; --lock-no:#FF7A6B; --lock-wait:#F2C14E; --lock-idle:#8A9599;
+  --shadow:0 1px 2px rgba(21,32,27,.06),0 6px 20px rgba(21,32,27,.06);
+  --sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'Cascadia Mono',Consolas,monospace;
+  --stencil:'Saira Stencil One','Arial Black',Impact,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#131011; --surface:#1C1819; --surface-2:#231E1F; --ink:#EDE7E7; --muted:#A69D9E; --line:#352E2F;
+    --accent:#F0555C; --accent-ink:#1E0506; --accent-soft:#3D1618;
+    --sel:#EDE7E7; --sel-ink:#1C1718;
+    --free:#72D3A2; --free-bg:#12301F; --busy:#FF9A7E; --busy-bg:#3A1C14; --use-bg:#4C2418;
+    --part:#F0B65E; --part-bg:#36270F; --past-bg:#1E1A1B; --past-ink:#62595A;
+    --plate:#8A1118; --plate-rib:#730D13; --plate-ink:#FFE9EA;
+    --tag:#E0B143; --tag-ink:#1D1606;
+    --lock-bg:#0E1113; --lock-ink:#EEF3F1; --lock-screen:#1A2023; --lock-line:#3A4448; --lock-ok:#3FCB8A; --lock-no:#FF7A6B; --lock-wait:#F2C14E; --lock-idle:#8A9599;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#131011; --surface:#1C1819; --surface-2:#231E1F; --ink:#EDE7E7; --muted:#A69D9E; --line:#352E2F;
+  --accent:#F0555C; --accent-ink:#1E0506; --accent-soft:#3D1618;
+    --sel:#EDE7E7; --sel-ink:#1C1718;
+  --free:#72D3A2; --free-bg:#12301F; --busy:#FF9A7E; --busy-bg:#3A1C14; --use-bg:#4C2418;
+  --part:#F0B65E; --part-bg:#36270F; --past-bg:#1E1A1B; --past-ink:#62595A;
+  --plate:#8A1118; --plate-rib:#730D13; --plate-ink:#FFE9EA;
+  --tag:#E0B143; --tag-ink:#1D1606;
+  --lock-bg:#0E1113; --lock-ink:#EEF3F1; --lock-screen:#1A2023; --lock-line:#3A4448; --lock-ok:#3FCB8A; --lock-no:#FF7A6B; --lock-wait:#F2C14E; --lock-idle:#8A9599;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+h1,h2,h3{margin:0;text-wrap:balance;line-height:1.25}
+p{margin:0}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-top:4px solid var(--accent);border-bottom:1px solid var(--line)}
+.top-in{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:10px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px}
+.brand{display:flex;align-items:center;gap:12px;margin-right:auto;min-width:0}
+.brand-mark{font-family:var(--stencil);font-size:15px;letter-spacing:.04em;background:var(--plate);color:var(--plate-ink);padding:6px 9px;border-radius:4px;background-image:repeating-linear-gradient(90deg,transparent 0 5px,var(--plate-rib) 5px 7px);white-space:nowrap}
+.brand h1{font-size:17px;font-weight:700}
+.brand small{display:block;font-size:12px;color:var(--muted);font-weight:500}
+.seg{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;padding:6px 14px;border-radius:999px;font-weight:600;font-size:13.5px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.clock{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.clock-now{display:flex;flex-direction:column;line-height:1.15;margin-right:4px}
+.clock-now span:first-child{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.clock-now b{font-family:var(--mono);font-size:14px;font-weight:600}
+.chip-btn{border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:4px 9px;font-size:12.5px;font-weight:600;font-family:var(--mono)}
+.chip-btn:hover{border-color:var(--accent);color:var(--accent)}
+.chip-btn.warn{font-family:var(--sans)}
+.chip-btn.armed{background:var(--busy-bg);color:var(--busy);border-color:var(--busy)}
+
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:18px 64px}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+.tabs button{border:0;background:none;padding:10px 14px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+
+/* ---------- schedule ---------- */
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.days{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:2px}
+.day{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 12px;text-align:left;line-height:1.2}
+.day b{display:block;font-size:13.5px}
+.day span{font-size:12px;color:var(--muted);font-family:var(--mono)}
+.day[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--surface)}
+.day[aria-pressed="true"] span{color:inherit;opacity:.75}
+.grid-wrap{overflow-x:auto;margin-inline:-6px}
+table.grid{width:100%;border-collapse:separate;border-spacing:6px;table-layout:fixed;min-width:340px}
+.grid th{font-weight:600;text-align:left;vertical-align:bottom}
+.grid th.tcol{width:78px;font-size:12px;color:var(--muted);padding-bottom:6px}
+.plate{background:var(--plate);color:var(--plate-ink);border-radius:6px 6px 3px 3px;padding:9px 10px 8px;background-image:repeating-linear-gradient(90deg,transparent 0 9px,var(--plate-rib) 9px 12px);line-height:1.15}
+.plate-no{display:block;font-family:var(--stencil);font-size:19px;letter-spacing:.05em}
+.plate-sub{display:block;font-size:11.5px;opacity:.85;font-weight:500;margin-top:2px}
+.tcell{font-family:var(--mono);font-size:12.5px;line-height:1.2;vertical-align:middle}
+.tcell .t2{display:block;color:var(--muted);font-size:11px}
+.tcell .nowtag{display:inline-block;margin-top:4px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);border-radius:3px;padding:1px 5px}
+.cell{width:100%;min-height:54px;border:1px solid transparent;border-radius:6px;padding:7px 10px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:3px;text-align:left;font-size:13px;font-weight:600;line-height:1.2;transition:background-color .12s,transform .12s}
+.cell small{font-weight:500;font-size:11px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.cell:not(:disabled):hover{transform:translateY(-1px)}
+.k-free,.k-allfree{background:var(--free-bg);color:var(--free)}
+.k-busy,.k-full{background:var(--busy-bg);color:var(--busy)}
+.k-use{background:repeating-linear-gradient(135deg,var(--busy-bg) 0 7px,var(--use-bg) 7px 14px);color:var(--busy)}
+.k-part{background:var(--part-bg);color:var(--part)}
+.k-past{background:var(--past-bg);color:var(--past-ink);cursor:default;font-weight:500}
+.cell.sel{background:var(--sel);color:var(--sel-ink);border-color:var(--sel)}
+tr.now .cell:not(.k-past){border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.dots{display:flex;gap:3px}
+.dots i{width:7px;height:7px;border-radius:2px;background:currentColor;opacity:.22}
+.dots i.on{opacity:1}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:16px;font-size:12.5px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+.hint-line{margin-top:10px;font-size:13px;color:var(--muted)}
+
+/* ---------- panel ---------- */
+.panel{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.panel h2{font-size:20px;margin-top:4px}
+.p-when{margin-top:4px;font-size:14px}
+.p-head{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:start;padding-bottom:14px;border-bottom:1px dashed var(--line);margin-bottom:14px}
+.link-btn{border:0;background:none;color:var(--accent);font-weight:600;font-size:13px;padding:2px 0}
+.steps{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:14px;counter-increment:s}
+.steps li::before{content:counter(s);width:26px;height:26px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-weight:700;font-size:12.5px}
+.steps b{display:block}
+.rule-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.rule-chips span{font-size:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+form{display:grid;gap:12px}
+.field{display:grid;gap:5px}
+.field label,.fs-legend{font-size:13px;font-weight:600}
+.field input[type=text]{width:100%;border:1px solid var(--line);background:var(--surface-2);border-radius:8px;padding:9px 11px;font-size:14.5px}
+.field input:focus{outline:none;border-color:var(--accent);background:var(--surface)}
+.field .mono-in{font-family:var(--mono)}
+.mrow{display:flex;gap:6px}
+.mrow input{flex:1;min-width:0}
+.x-btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;width:38px;flex:0 0 38px;font-size:16px;color:var(--muted)}
+.add-btn{justify-self:start;border:1px dashed var(--line);background:none;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600;color:var(--accent)}
+.seats{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;padding:10px 8px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface-2);position:relative}
+.seats::before{content:'G1–G3 dưới cửa sổ · G4–G7 dọc vách';position:absolute;top:-9px;left:10px;font-size:10.5px;background:var(--surface);padding:0 6px;color:var(--muted);font-weight:600}
+.seat{border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:6px 0;font-family:var(--mono);font-size:12.5px;font-weight:600}
+.seat:disabled{background:var(--busy-bg);color:var(--busy);border-color:transparent;cursor:not-allowed;text-decoration:line-through}
+.seat[aria-pressed="true"]{background:var(--sel);color:var(--sel-ink);border-color:var(--sel)}
+.check{display:flex;gap:9px;align-items:flex-start;font-size:13.5px}
+.check input{margin-top:3px;accent-color:var(--accent)}
+.err{color:var(--busy);font-size:13px;font-weight:600;min-height:0}
+.err:empty{display:none}
+.primary{border:0;background:var(--accent);color:var(--accent-ink);font-weight:700;border-radius:9px;padding:11px 16px;font-size:15px}
+.primary:hover{filter:brightness(1.07)}
+.secondary{border:1px solid var(--line);background:var(--surface);font-weight:600;border-radius:9px;padding:9px 14px;font-size:14px}
+.fine{font-size:12.5px;color:var(--muted)}
+
+/* RESERVED hang tag (confirmation) */
+.tag{background:var(--tag);color:var(--tag-ink);border-radius:10px;padding:26px 18px 18px;position:relative;text-align:center}
+.tag::before{content:'';position:absolute;top:10px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--surface);box-shadow:inset 0 1px 2px rgba(0,0,0,.35)}
+.tag-word{font-family:var(--stencil);font-size:30px;letter-spacing:.08em;line-height:1;margin-top:6px}
+.tag-sub{font-size:12.5px;font-weight:600;margin-top:4px}
+.qr{background:#fff;border-radius:8px;padding:10px;width:max-content;margin:14px auto 8px}
+.qr img,.qr canvas{display:block;width:132px;height:132px}
+.qr-fallback{font-family:var(--mono);font-size:12px;color:#222;width:132px;text-align:center}
+.tag-code{font-family:var(--mono);font-size:20px;font-weight:600;letter-spacing:.06em}
+dl.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:16px 0 0;font-size:14px}
+dl.kv dt{color:var(--muted)}
+dl.kv dd{margin:0;font-weight:600;min-width:0;overflow-wrap:anywhere}
+.btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+
+/* ---------- lists / cards ---------- */
+.narrow{max-width:760px}
+.lookup{display:flex;flex-wrap:wrap;gap:8px;align-items:end;margin-bottom:8px}
+.lookup .field{flex:1 1 220px}
+.samples{font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:18px}
+.samples button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:2px 10px;font-family:var(--mono);font-size:12px}
+.quota{display:flex;align-items:center;gap:10px;font-size:13.5px;margin-bottom:14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.quota .pips{display:flex;gap:4px}
+.quota .pips i{width:22px;height:8px;border-radius:2px;background:var(--line)}
+.quota .pips i.on{background:var(--accent)}
+.list{display:grid;gap:10px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.item-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.item-top h3{font-size:15.5px}
+.item-top .when{font-family:var(--mono);font-size:13.5px}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
+.pill::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.st-booked{background:var(--part-bg);color:var(--part)}
+.st-checked_in{background:var(--busy-bg);color:var(--busy)}
+.st-completed{background:var(--free-bg);color:var(--free)}
+.st-expired,.st-cancelled{background:var(--past-bg);color:var(--muted)}
+.meta{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px}
+.meta b{color:var(--ink);font-weight:600}
+.acts{display:flex;flex-wrap:wrap;gap:6px}
+.acts button{border:1px solid var(--line);background:var(--surface);border-radius:7px;padding:5px 11px;font-size:13px;font-weight:600}
+.acts button.go{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.acts button.danger{color:var(--busy)}
+.acts button:disabled{opacity:.45;cursor:not-allowed}
+.note{font-size:12.5px;color:var(--muted)}
+.empty{padding:22px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px;font-size:14px}
+
+/* ---------- manager ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:20px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stat b{display:block;font-size:26px;font-family:var(--mono);font-weight:600;line-height:1.1}
+.stat span{font-size:12.5px;color:var(--muted);font-weight:500}
+.stat.alert b{color:var(--busy)}
+.mgr-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:10px}
+.sec-h h2{font-size:16px}
+.sec-h span{font-size:12.5px;color:var(--muted)}
+.search{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:9px 12px;margin-bottom:12px;font-size:14px}
+.due{font-size:12.5px;font-weight:600}
+.due.hot{color:var(--busy)}
+.ci{border-top:1px dashed var(--line);padding-top:10px;display:grid;gap:8px}
+.ci-cards{display:flex;flex-wrap:wrap;gap:6px 14px}
+.bar{height:8px;border-radius:4px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--free)}
+.item.clean .bar i{background:var(--part)}
+.item.over{border-color:var(--busy)}
+.item.over .bar i{background:var(--busy)}
+.left{font-size:13px;font-weight:700}
+.item.clean .left{color:var(--part)}
+.item.over .left{color:var(--busy)}
+.cardchips{display:flex;flex-wrap:wrap;gap:5px}
+.cardchip{font-family:var(--mono);font-size:11.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
+.sign{font-family:var(--stencil);font-size:11px;letter-spacing:.06em;background:var(--tag);color:var(--tag-ink);border-radius:3px;padding:1px 6px}
+.tray{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px}
+.cubby{border:1px solid var(--line);border-radius:6px;background:var(--surface-2);min-height:78px;padding:6px;display:flex;flex-direction:column;gap:4px}
+.cubby b{font-family:var(--mono);font-size:11.5px}
+.cubby .cardchip{font-size:10.5px;padding:0 4px;background:var(--surface)}
+.cubby.has{border-color:var(--accent);background:var(--accent-soft)}
+.cubby em{font-style:normal;font-size:11px;color:var(--muted)}
+.log{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;max-height:320px;overflow:auto}
+.log li{display:grid;grid-template-columns:48px 1fr;gap:10px;padding:8px 14px;border-bottom:1px solid var(--line);font-size:13.5px}
+.log li:last-child{border-bottom:0}
+.log time{font-family:var(--mono);color:var(--muted);font-size:12.5px}
+.block{margin-top:24px}
+
+/* ---------- rules ---------- */
+.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.rcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.rcard h2{font-size:16px;margin-bottom:10px}
+.rcard ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:14px}
+.rcard table{width:100%;border-collapse:collapse;font-size:14px}
+.rcard td{padding:7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.rcard td:first-child{color:var(--muted);width:40%;padding-right:12px}
+.rcard tr:last-child td{border-bottom:0}
+.rcard.wide{grid-column:1/-1}
+.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.flow div{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--surface-2)}
+.flow b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.flow h3{font-size:15px;margin:2px 0 6px}
+.flow p{font-size:13.5px;color:var(--muted)}
+
+.selbar{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--surface);display:flex;align-items:center;gap:10px;justify-content:space-between;font-size:13.5px}
+.selbar button{border:0;background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:8px 12px;font-weight:700;white-space:nowrap}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:40;background:var(--ink);color:var(--surface);padding:10px 16px;border-radius:10px;font-size:14px;font-weight:500;box-shadow:var(--shadow);max-width:calc(100% - 32px)}
+.toast.bad{background:var(--busy);color:#fff}
+
+/* ---------- khóa QR ---------- */
+.spon{display:inline-flex;align-items:center;gap:5px;border:1.5px dashed currentColor;border-radius:5px;padding:1px 7px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;opacity:.9}
+.plate .spon{margin-top:6px;font-size:9.5px;padding:0 6px}
+.tag-spon{margin-top:12px;font-size:12px;font-weight:600;display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap}
+.doors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.door{background:var(--lock-bg);color:var(--lock-ink);border-radius:16px;padding:16px;display:grid;gap:12px;align-content:start;box-shadow:var(--shadow)}
+.door-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.door-no{display:block;font-family:var(--stencil);font-size:22px;letter-spacing:.05em;line-height:1.1}
+.door small{display:block;font-size:12px;opacity:.75}
+.screen{background:var(--lock-screen);border-radius:10px;padding:12px;display:grid;gap:6px;min-height:124px;align-content:start}
+.screen .st{display:flex;align-items:center;gap:8px;font-weight:700;font-size:13.5px;letter-spacing:.04em}
+.screen p{font-size:13px;opacity:.92}
+.screen p.dim{opacity:.68}
+.led{width:10px;height:10px;flex:0 0 10px;border-radius:50%;background:var(--lock-idle);box-shadow:0 0 0 3px color-mix(in srgb,var(--lock-idle) 25%,transparent)}
+.led.ok{background:var(--lock-ok);box-shadow:0 0 0 3px color-mix(in srgb,var(--lock-ok) 30%,transparent)}
+.led.no{background:var(--lock-no);box-shadow:0 0 0 3px color-mix(in srgb,var(--lock-no) 30%,transparent)}
+.led.wait{background:var(--lock-wait);box-shadow:0 0 0 3px color-mix(in srgb,var(--lock-wait) 30%,transparent)}
+.res{border-radius:9px;padding:9px 11px;font-size:13px;display:grid;gap:2px;margin-top:4px}
+.res b{font-size:13.5px;letter-spacing:.05em}
+.res.ok{background:color-mix(in srgb,var(--lock-ok) 24%,transparent)}
+.res.no{background:color-mix(in srgb,var(--lock-no) 24%,transparent)}
+form.scan{display:flex;gap:6px}
+form.scan input{flex:1;min-width:0;border:1px solid var(--lock-line);background:transparent;color:inherit;border-radius:8px;padding:8px 10px;font-family:var(--mono);font-size:13.5px;text-transform:uppercase}
+form.scan input::placeholder{color:inherit;opacity:.5;text-transform:none}
+form.scan input:focus{outline:none;border-color:var(--lock-ok)}
+form.scan button{border:0;background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:8px 14px;font-weight:700}
+.codechips{display:flex;flex-wrap:wrap;gap:6px;font-size:12px;align-items:center}
+.codechips span{opacity:.7}
+.codechips button{border:1px solid var(--lock-line);background:transparent;color:inherit;border-radius:999px;padding:2px 9px;font-family:var(--mono);font-size:11.5px}
+.codechips button:hover{border-color:var(--lock-ok)}
+.alog li{grid-template-columns:48px 18px 1fr}
+.alog .ok{color:var(--free);font-weight:700}
+.alog .no{color:var(--busy);font-weight:700}
+.dstat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.dcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:5px;font-size:13.5px;align-content:start}
+.dcard .row{display:flex;align-items:center;gap:8px;font-weight:700}
+.ro{border-top:1px dashed var(--line);padding-top:10px;display:grid;gap:8px}
+.stat small{font-size:13px;color:var(--muted);font-family:var(--sans);font-weight:500}
+.intro{font-size:13.5px;color:var(--muted);margin:0 0 14px;max-width:70ch}
+
+@media (max-width:900px){
+  .layout,.mgr-cols{grid-template-columns:1fr}
+  .panel{position:static}
+  .tray{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .rules{grid-template-columns:1fr}
+  .doors,.dstat{grid-template-columns:1fr}
+}
+@media (min-width:901px){.selbar{display:none!important}}
+@media (max-width:600px){
+  .top-in,.wrap{padding-inline:16px}
+  .brand-mark{display:none}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid-wrap{margin-inline:-4px}
+  table.grid{border-spacing:4px}
+  .grid th.tcol{width:52px}
+  .plate{padding:7px 7px 6px}
+  .plate-no{font-size:15px}
+  .plate-sub{font-size:10.5px}
+  .cell{padding:6px 7px;font-size:12px;min-height:50px}
+  .cell small{display:none}
+  .tcell{font-size:11.5px}
+  .flow{grid-template-columns:1fr}
+  .tray{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .plate .spon{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <span class="brand-mark">TÒA D</span>
+      <div><h1>Cabin Tòa D</h1><small>Đặt chỗ cabin container · FTU · Demo nhóm 3 KAIZENZ</small></div>
+    </div>
+    <div class="seg" role="group" aria-label="Vai trò">
+      <button id="role-student" data-act="role" data-role="student" aria-pressed="true">Sinh viên</button>
+      <button id="role-manager" data-act="role" data-role="manager" aria-pressed="false">Quản lý nhà D</button>
+    </div>
+    <div class="clock" aria-label="Đồng hồ mô phỏng">
+      <div class="clock-now"><span>Giờ mô phỏng</span><b id="clock-text">—</b></div>
+      <button class="chip-btn" data-act="jump" data-min="5" title="Tua nhanh 5 phút">+5′</button>
+      <button class="chip-btn" data-act="jump" data-min="15" title="Tua nhanh 15 phút">+15′</button>
+      <button class="chip-btn" data-act="jump" data-min="60" title="Tua nhanh 1 giờ">+1h</button>
+      <button class="chip-btn warn" id="reset-btn" data-act="reset">Làm mới demo</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="tabs" id="tabs" role="tablist"></nav>
+  <div id="view"></div>
+</main>
+<div class="selbar" id="selbar" hidden></div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function(){
+'use strict';
+/* ================= constants (theo Quy định đăng ký của nhóm) ================= */
+const SLOTS=[[8,9],[9,10],[10,11],[11,12],[12,13],[13,14],[14,15],[15,16],[16,17],[17,20]]; // ca cuối 17–20 là block 3 tiếng
+const CABINS=[
+  {id:'C1',no:'01',name:'Cabin 1',sub:'Nhóm A',group:true},
+  {id:'C2',no:'02',name:'Cabin 2',sub:'Nhóm B',group:true},
+  {id:'C3',no:'03',name:'Cabin 3',sub:'Cá nhân · 7 ghế',group:false}
+];
+const SEATS=7, MAX_H=4, LATE_MIN=15, WEEK_LIMIT=2, CHECKIN_EARLY_MIN=30, OPEN_EARLY_MIN=5;
+const KEY='kaizenz-cabin-v2', CLOCK_KEY='kaizenz-cabin-clock-v1', PREF_KEY='kaizenz-cabin-pref-v1';
+const ST={booked:'Chờ quét QR',checked_in:'Đang sử dụng',completed:'Đã kết thúc',expired:'Tự hủy · quá 15′',cancelled:'Đã hủy'};
+
+/* ================= helpers ================= */
+const $=s=>document.querySelector(s);
+const pad=n=>String(n).padStart(2,'0');
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dk=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const parseDk=k=>{const a=k.split('-').map(Number);return new Date(a[0],a[1]-1,a[2]);};
+const at=(k,h,m)=>{const d=parseDk(k);d.setHours(h,m||0,0,0);return d.getTime();};
+const sStart=(k,i)=>at(k,SLOTS[i][0]);
+const sEnd=(k,i)=>at(k,SLOTS[i][1]);
+const hm=ts=>{const d=new Date(ts);return pad(d.getHours())+':'+pad(d.getMinutes());};
+const DOW=['CN','T2','T3','T4','T5','T6','T7'];
+const DOW_FULL=['Chủ nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
+const isWk=d=>d.getDay()!==0&&d.getDay()!==6;
+function nextWeekday(d){d=new Date(d);while(!isWk(d))d.setDate(d.getDate()+1);return d;}
+function addWeekdays(k,n){const d=parseDk(k);let c=0;while(c<n){d.setDate(d.getDate()+1);if(isWk(d))c++;}return dk(d);}
+function weekOf(k){const d=parseDk(k);d.setDate(d.getDate()-((d.getDay()+6)%7));return dk(d);}
+const dayLabel=k=>{const d=parseDk(k);return DOW_FULL[d.getDay()]+' '+pad(d.getDate())+'/'+pad(d.getMonth()+1);};
+const hours=(s,e)=>SLOTS[e-1][1]-SLOTS[s][0];
+const timeRange=(s,e)=>pad(SLOTS[s][0])+':00–'+pad(SLOTS[e-1][1])+':00';
+const cab=id=>CABINS.find(c=>c.id===id);
+const cabinLabel=b=>b.cabin==='C3'?'Cabin 3 · Ghế '+b.seat:cab(b.cabin).name+' · '+cab(b.cabin).sub;
+const people=b=>[b.rep.mssv].concat(b.members||[]);
+const isActive=b=>b.status==='booked'||b.status==='checked_in';
+const deadline=b=>Math.max(sStart(b.day,b.s),b.createdAt)+LATE_MIN*60000;
+const fmtDur=m=>m>=60?Math.floor(m/60)+' giờ'+(m%60?' '+(m%60)+' phút':''):m+' phút';
+const AL='ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+function newCode(list){let c;do{c='KZ-';for(let i=0;i<4;i++)c+=AL[Math.floor(Math.random()*AL.length)];}while(list.some(b=>b.code===c));return c;}
+function lsGet(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+
+/* ================= clock (giờ mô phỏng để demo) ================= */
+let clock;
+function defaultClock(){const d=nextWeekday(new Date());d.setHours(9,5,0,0);return {baseReal:Date.now(),baseSim:d.getTime(),lastSeen:Date.now()};}
+function now(){return clock.baseSim+(Date.now()-clock.baseReal);}
+function today(){return dk(new Date(now()));}
+function saveClock(){clock.lastSeen=Date.now();lsSet(CLOCK_KEY,clock);}
+function loadClock(){
+  const c=lsGet(CLOCK_KEY);
+  if(!c||typeof c.baseSim!=='number')return null;
+  if(Date.now()-c.lastSeen>60000){c.baseSim+=c.lastSeen-c.baseReal;c.baseReal=Date.now();} // đóng tab thì đồng hồ dừng
+  return c;
+}
+
+/* ================= data ================= */
+let S;
+function seed(){
+  const D=dk(new Date(clock.baseSim)), D1=addWeekdays(D,1), D2=addWeekdays(D,2);
+  const prev=at(D,0)-4*3600000;
+  const list=[];let n=0;
+  const P=(name,mssv)=>({name,mssv});
+  const mk=o=>{const b=Object.assign({id:'b'+(++n),channel:'online',createdAt:prev,members:[],seat:null,checkinAt:null,checkoutAt:null,remindedAt:null,openedBy:null},o);b.code=newCode(list);list.push(b);return b;};
+  const open=(b,t)=>{b.status='checked_in';b.checkinAt=t;b.openedBy='qr';return b;};
+  // Hôm nay
+  const a1=mk({day:D,cabin:'C1',s:0,e:1,rep:P('Nguyễn Minh Anh','2311110245'),members:['2311110312'],status:'completed',checkinAt:at(D,7,58),checkoutAt:at(D,8,52),openedBy:'qr'});
+  const a2=mk({day:D,cabin:'C1',s:1,e:3,rep:P('Trần Gia Huy','2211530118'),members:['2211530122','2211530140'],status:'booked'});
+  const a3=open(mk({day:D,cabin:'C2',s:0,e:2,rep:P('Lê Thảo Vy','2311150077'),members:['2311150081','2311150093']}),at(D,7,56));
+  mk({day:D,cabin:'C1',s:3,e:5,rep:P('Phạm Quốc Bảo','2411120056'),members:['2411120061'],status:'booked'});
+  mk({day:D,cabin:'C2',s:5,e:7,rep:P('Đỗ Khánh Linh','2311310204'),members:['2311310210','2311310222','2311310233'],status:'booked'});
+  mk({day:D,cabin:'C1',s:9,e:10,rep:P('Vũ Hải Nam','2111140019'),members:['2111140020'],status:'booked'});
+  const a7=open(mk({day:D,cabin:'C3',seat:1,s:0,e:3,rep:P('Hoàng Ngọc Hà','2411510033')}),at(D,7,59));
+  mk({day:D,cabin:'C3',seat:2,s:1,e:3,rep:P('Bùi Tuấn Kiệt','2311210150'),status:'booked'});
+  const a9=open(mk({day:D,cabin:'C3',seat:3,s:1,e:2,rep:P('Ngô Thu Trang','2211110087')}),at(D,8,57));
+  const a10=mk({day:D,cabin:'C3',seat:4,s:0,e:1,rep:P('Mai Anh Thư','2311610021'),status:'completed',checkinAt:at(D,8,1),checkoutAt:at(D,8,55),openedBy:'qr'});
+  mk({day:D,cabin:'C3',seat:5,s:3,e:5,rep:P('Đặng Mai Phương','2311410066'),status:'booked'});
+  mk({day:D,cabin:'C3',seat:6,s:3,e:4,rep:P('Lý Đức Thịnh','2411310012'),status:'booked'});
+  mk({day:D,cabin:'C3',seat:1,s:5,e:8,rep:P('Trịnh Bảo Ngọc','2211210045'),status:'booked'});
+  mk({day:D,cabin:'C3',seat:2,s:9,e:10,rep:P('Phan Nhật Minh','2311510198'),status:'booked'});
+  // Các ngày tới
+  mk({day:D1,cabin:'C1',s:2,e:5,rep:P('Nguyễn Minh Anh','2311110245'),members:['2311110312','2311110330'],status:'booked'});
+  mk({day:D1,cabin:'C2',s:0,e:2,rep:P('Cao Hồng Nhung','2211410102'),members:['2211410115'],status:'booked'});
+  mk({day:D1,cabin:'C3',seat:3,s:1,e:4,rep:P('Ngô Thu Trang','2211110087'),status:'booked'});
+  mk({day:D1,cabin:'C3',seat:4,s:1,e:3,rep:P('Hoàng Ngọc Hà','2411510033'),status:'booked'});
+  mk({day:D2,cabin:'C2',s:6,e:9,rep:P('Trần Gia Huy','2211530118'),members:['2211530122'],status:'booked'});
+  const A=(t,b,ok,reason)=>({t,cabin:b.cabin,seat:b.seat,code:b.code,name:b.rep.name,ok,reason,by:'qr'});
+  const access=[A(at(D,8,57),a9,true,'Nhận phòng'),A(at(D,8,41),a2,false,'Chưa đến giờ · mở từ 08:55'),A(at(D,8,1),a10,true,'Nhận phòng'),
+    A(at(D,7,59),a7,true,'Nhận phòng'),A(at(D,7,58),a1,true,'Nhận phòng'),A(at(D,7,56),a3,true,'Nhận phòng')];
+  const log=[
+    {t:at(D,8,57),text:'Cabin 3 · Ghế 3: Ngô Thu Trang quét QR, cửa mở, nhận phòng tự động.'},
+    {t:at(D,8,55),text:'Cabin 3 · Ghế 4: Mai Anh Thư trả phòng sớm, mã hết hiệu lực.'},
+    {t:at(D,8,52),text:'Cabin 1 · Nhóm A: nhóm Nguyễn Minh Anh trả phòng sớm, cửa tự khóa.'},
+    {t:at(D,8,41),text:'Cabin 1: khóa từ chối mã của Trần Gia Huy vì chưa đến giờ (mở từ 08:55).'},
+    {t:at(D,7,59),text:'Cabin 3 · Ghế 1: Hoàng Ngọc Hà quét QR, cửa mở, nhận phòng tự động.'},
+    {t:at(D,7,56),text:'Cabin 2 · Nhóm B: nhóm Lê Thảo Vy quét QR, cửa mở, nhận phòng tự động.'},
+    {t:at(D,7,45),text:'Quản lý nhà D mở ca. Lao công đã vệ sinh đầu ngày cả 3 cabin.'}
+  ];
+  return {v:2,bookings:list,log,access};
+}
+function load(){const s=lsGet(KEY);if(s&&s.v===2&&Array.isArray(s.bookings)){if(!Array.isArray(s.access))s.access=[];return s;}return null;}
+function save(){lsSet(KEY,S);}
+function log(text){S.log.unshift({t:now(),text});S.log=S.log.slice(0,40);}
+const find=id=>S.bookings.find(b=>b.id===id);
+function addAccess(o){S.access.unshift(Object.assign({t:now()},o));S.access=S.access.slice(0,80);}
+const openFrom=b=>sStart(b.day,b.s)-OPEN_EARLY_MIN*60000;
+
+/* ================= availability ================= */
+const activeAt=(day,c,i)=>S.bookings.filter(b=>b.day===day&&b.cabin===c&&isActive(b)&&b.s<=i&&i<b.e);
+function freeSeatsAt(day,i){const u=new Set(activeAt(day,'C3',i).map(b=>b.seat));const r=[];for(let s=1;s<=SEATS;s++)if(!u.has(s))r.push(s);return r;}
+function freeSeatsRange(day,s,e){let r=null;for(let i=s;i<e;i++){const f=freeSeatsAt(day,i);r=r?r.filter(x=>f.includes(x)):f;}return r||[];}
+function groupFree(day,c,s,e){for(let i=s;i<e;i++)if(activeAt(day,c,i).length)return false;return true;}
+const slotOpen=(day,i)=>sEnd(day,i)>now();
+function rangeError(day,c,s,e){
+  if(hours(s,e)>MAX_H)return 'Tối đa 4 tiếng liên tiếp cho một lượt.';
+  for(let i=s;i<e;i++)if(!slotOpen(day,i))return 'Khung giờ này đã qua.';
+  if(cab(c).group){if(!groupFree(day,c,s,e))return e-s>1?'Có khung giờ trong khoảng này đã được đặt.':'Khung giờ này đã có nhóm đặt.';}
+  else if(!freeSeatsRange(day,s,e).length)return 'Không còn ghế trống xuyên suốt khoảng giờ này.';
+  return null;
+}
+function cellState(day,c,i){
+  if(!slotOpen(day,i))return {k:'past',t:'Đã qua'};
+  if(cab(c).group){
+    const bs=activeAt(day,c,i);
+    if(!bs.length)return {k:'free',t:'Trống'};
+    return bs[0].status==='checked_in'?{k:'use',t:'Đang sử dụng',b:bs[0]}:{k:'busy',t:'Đã book',b:bs[0]};
+  }
+  const f=freeSeatsAt(day,i),n=f.length;
+  if(n===SEATS)return {k:'allfree',t:'Trống cả phòng',free:f};
+  if(n===0)return {k:'full',t:'Hết ghế',free:f};
+  return {k:'part',t:'Còn '+n+'/'+SEATS+' ghế',free:f};
+}
+function personConflicts(p,day,s,e,exceptId){
+  return S.bookings.find(b=>b.id!==exceptId&&b.day===day&&isActive(b)&&people(b).includes(p)&&b.s<e&&s<b.e);
+}
+function weekGroupCount(p,day){
+  const w=weekOf(day);
+  return S.bookings.filter(b=>cab(b.cabin).group&&weekOf(b.day)===w&&['booked','checked_in','completed'].includes(b.status)&&people(b).includes(p)).length;
+}
+function extendError(b){
+  if(b.status!=='checked_in')return 'Chỉ gia hạn khi đang sử dụng.';
+  if(b.e>=SLOTS.length)return 'Đã là ca cuối trong ngày.';
+  if(hours(b.s,b.e+1)>MAX_H)return 'Đã đủ tối đa 4 tiếng.';
+  if(cab(b.cabin).group){if(!groupFree(b.day,b.cabin,b.e,b.e+1))return 'Ca tiếp theo đã có nhóm đặt.';}
+  else if(!freeSeatsAt(b.day,b.e).includes(b.seat))return 'Ghế này đã có người đặt ca sau.';
+  return null;
+}
+
+/* ================= UI state ================= */
+const pref=lsGet(PREF_KEY)||{};
+const ui={role:pref.role==='manager'?'manager':'student',tab:null,day:null,sel:null,done:null,
+  draft:{mssv:'',name:'',members:[''],seat:null,now:true},myMssv:pref.my||'',q:'',ro:null,qrOpen:{},scanRes:{},scanDraft:{}};
+function savePref(){lsSet(PREF_KEY,{role:ui.role,my:ui.myMssv});}
+const TABS={student:[['lich','Lịch trống & đặt chỗ'],['cua-toi','Lượt đặt của tôi'],['cua','Cửa cabin (mô phỏng)'],['quy-dinh','Quy định']],
+  manager:[['dieu-phoi','Điều phối'],['lich','Lịch & đăng ký hộ'],['cua','Cửa cabin (mô phỏng)'],['quy-dinh','Quy định']]};
+
+let toastT;
+function toast(msg,bad){const t=$('#toast');t.textContent=msg;t.className='toast'+(bad?' bad':'');t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>{t.hidden=true;},3200);}
+
+/* ================= render: shell ================= */
+function render(){
+  $('#role-student').setAttribute('aria-pressed',ui.role==='student');
+  $('#role-manager').setAttribute('aria-pressed',ui.role==='manager');
+  const tabs=TABS[ui.role];
+  if(!tabs.some(t=>t[0]===ui.tab))ui.tab=tabs[0][0];
+  $('#tabs').innerHTML=tabs.map(t=>`<button role="tab" id="tab-${t[0]}" data-act="tab" data-tab="${t[0]}" aria-selected="${ui.tab===t[0]}">${t[1]}</button>`).join('');
+  const v=$('#view');
+  if(ui.tab==='lich'){
+    v.innerHTML=`<div class="layout"><section aria-label="Lịch cabin"><div class="days" id="days"></div><div class="grid-wrap" id="grid"></div>
+      <div class="legend"><span><i style="background:var(--free-bg);border:1px solid var(--free)"></i>Trống / Trống cả phòng</span><span><i style="background:var(--busy-bg);border:1px solid var(--busy)"></i>Đã book</span><span><i style="background:repeating-linear-gradient(135deg,var(--busy-bg) 0 3px,var(--use-bg) 3px 6px);border:1px solid var(--busy)"></i>Đang sử dụng</span><span><i style="background:var(--part-bg);border:1px solid var(--part)"></i>Còn X/7 ghế (Cabin 3)</span><span><i style="background:var(--sel)"></i>Bạn đang chọn</span></div>
+      <p class="hint-line">Bấm 1 ô để chọn, bấm ô liền kề để nối thêm (tối đa 4 tiếng). Ca 17:00–20:00 là block 3 tiếng.</p></section>
+      <aside class="panel" id="panel" aria-live="polite"></aside></div>`;
+    renderPanel();
+  }else if(ui.tab==='cua-toi'){
+    v.innerHTML=`<section class="narrow"><div class="lookup"><div class="field"><label for="my-mssv">Nhập MSSV để xem lượt đặt</label><input type="text" class="mono-in" id="my-mssv" inputmode="numeric" autocomplete="off" placeholder="VD: 2311110245" value="${esc(ui.myMssv)}"></div><button class="secondary" data-act="my-go">Xem</button></div>
+      <div class="samples">MSSV mẫu: <button data-act="my-sample" data-m="2211530118">2211530118</button><button data-act="my-sample" data-m="2311110245">2311110245</button><button data-act="my-sample" data-m="2411510033">2411510033</button></div>
+      <div id="my-list"></div></section>`;
+  }else if(ui.tab==='dieu-phoi'){
+    v.innerHTML=`<div id="stats" class="stats"></div>
+      <div class="mgr-cols">
+        <section><div class="sec-h"><h2>Chờ quét QR hôm nay</h2><span>Tự hủy sau 15 phút</span></div>
+          <input type="search" class="search" id="mgr-q" placeholder="Tìm theo MSSV, tên hoặc mã đặt chỗ" value="${esc(ui.q)}" aria-label="Tìm lượt đặt"><div class="list" id="queue"></div></section>
+        <section><div class="sec-h"><h2>Đang sử dụng · theo dõi giờ</h2><span>Nhắc khi còn 10 phút</span></div><div class="list" id="active"></div></section>
+      </div>
+      <section class="block"><div class="sec-h"><h2>Trạng thái cửa</h2><span>Khóa QR ở 3 cabin</span></div><div class="dstat" id="dstat"></div></section>
+      <section class="block"><div class="sec-h"><h2>Nhật ký ra vào</h2><span>Ghi cả lần mở được và lần bị từ chối</span></div><ul class="log alog" id="alog"></ul></section>
+      <section class="block"><div class="sec-h"><h2>Nhật ký hoạt động</h2></div><ul class="log" id="log"></ul></section>`;
+  }else if(ui.tab==='cua'){
+    v.innerHTML=`<section><p class="intro">Mỗi cabin có một khóa QR ở cửa. Nhập mã đặt chỗ hoặc bấm vào một mã bên dưới để mô phỏng thao tác quét. Khóa chỉ mở với mã đúng cabin, đúng ngày và trong khung giờ đã đặt (từ 5 phút trước giờ bắt đầu). Mọi lần quét đều được ghi lại.</p>
+      <div class="doors" id="doors"></div>
+      <section class="block"><div class="sec-h"><h2>Nhật ký ra vào</h2><span>Ghi cả lần mở được và lần bị từ chối</span></div><ul class="log alog" id="alog"></ul></section></section>`;
+  }else{
+    v.innerHTML=rulesHTML();
+  }
+  renderLive();
+}
+
+/* ================= render: live parts ================= */
+function renderLive(){
+  const T=today();
+  if(!ui.day||ui.day<T)ui.day=T;
+  if(ui.sel&&ui.sel.day<T)ui.sel=null;
+  renderClock();
+  if($('#grid')){renderDays();renderGrid();}
+  if($('#my-list'))renderMy();
+  if($('#queue'))renderMgr();
+  if($('#doors'))renderDoors();
+  renderSelbar();
+}
+function renderClock(){const d=new Date(now());$('#clock-text').textContent=DOW[d.getDay()]+' '+pad(d.getDate())+'/'+pad(d.getMonth()+1)+' · '+hm(now());}
+function renderDays(){
+  const T=today(),days=[T];for(let i=1;i<5;i++)days.push(addWeekdays(T,i));
+  $('#days').innerHTML=days.map(k=>{const d=parseDk(k);return `<button class="day" data-act="day" data-day="${k}" aria-pressed="${k===ui.day}"><b>${k===T&&isWk(d)?'Hôm nay':DOW_FULL[d.getDay()]}</b><span>${DOW[d.getDay()]} ${pad(d.getDate())}/${pad(d.getMonth()+1)}</span></button>`;}).join('');
+}
+function renderGrid(){
+  const day=ui.day,N=now(),mgr=ui.role==='manager',sel=ui.sel&&ui.sel.day===day?ui.sel:null;
+  const weekend=!isWk(parseDk(day));
+  let h=`<table class="grid"><thead><tr><th class="tcol">Khung giờ</th>${CABINS.map(c=>`<th scope="col"><div class="plate"><span class="plate-no">CABIN ${c.no}</span><span class="plate-sub">${c.sub}</span></div></th>`).join('')}</tr></thead><tbody>`;
+  SLOTS.forEach((sl,i)=>{
+    const isNow=sStart(day,i)<=N&&N<sEnd(day,i);
+    h+=`<tr class="${isNow?'now':''}"><th scope="row" class="tcell">${pad(sl[0])}:00<span class="t2">${pad(sl[1])}:00</span>${isNow?'<span class="nowtag">Bây giờ</span>':''}</th>`;
+    CABINS.forEach(c=>{
+      const st=weekend?{k:'past',t:'Nghỉ'}:cellState(day,c.id,i);
+      const on=sel&&sel.cabin===c.id&&i>=sel.s&&i<sel.e;
+      let extra='';
+      if(!c.group&&st.free&&st.k!=='past'){extra='<span class="dots" aria-hidden="true">'+Array.from({length:SEATS},(_,x)=>`<i class="${st.free.includes(x+1)?'':'on'}"></i>`).join('')+'</span>';}
+      else if(mgr&&st.b){extra=`<small>${esc(st.b.rep.name)} · ${st.b.code}</small>`;}
+      const lab=`${c.name} ${pad(sl[0])}:00–${pad(sl[1])}:00: ${st.t}${on?', đang chọn':''}`;
+      h+=`<td><button class="cell k-${st.k}${on?' sel':''}" data-act="cell" data-cabin="${c.id}" data-i="${i}" ${st.k==='past'?'disabled':''} aria-label="${esc(lab)}">${on?'✓ Đã chọn':st.t}${extra}</button></td>`;
+    });
+    h+='</tr>';
+  });
+  $('#grid').innerHTML=h+'</tbody></table>';
+}
+function renderSelbar(){
+  const bar=$('#selbar');
+  if(ui.tab!=='lich'||!ui.sel){bar.hidden=true;return;}
+  const s=ui.sel;bar.hidden=false;
+  bar.innerHTML=`<span>${cab(s.cabin).name} · <span class="mono">${timeRange(s.s,s.e)}</span></span><button data-act="to-panel">Điền thông tin ↓</button>`;
+}
+
+/* ================= render: booking panel ================= */
+function renderPanel(){
+  const host=$('#panel');if(!host)return;
+  const mgr=ui.role==='manager';
+  if(ui.done){const b=find(ui.done);if(b){host.innerHTML=ticketHTML(b,mgr);drawQRs(host);return;}ui.done=null;}
+  if(!ui.sel){
+    host.innerHTML=`<div class="eyebrow">${mgr?'Đăng ký hộ sinh viên':'Đặt chỗ online'}</div><h2>${mgr?'Chọn khung giờ cho sinh viên cần đăng ký hộ':'Chọn cabin và khung giờ'}</h2>
+      <ol class="steps"><li><span><b>Chọn khung giờ</b>1–4 ô liền nhau trong cùng một cabin trên lịch.</span></li>
+      <li><span><b>Điền MSSV</b>Học nhóm cần MSSV người đại diện + ít nhất 1 thành viên. Cabin 3 chọn 1 trong 7 ghế.</span></li>
+      <li><span><b>Quét QR ở cửa</b>Người đại diện nhận mã QR, quét vào khóa cửa cabin từ 5 phút trước giờ. Không cần qua bàn trực, không gửi thẻ SV.</span></li></ol>
+      <div class="rule-chips"><span>08:00–20:00 · T2–T6</span><span>Block 1 tiếng</span><span>Tối đa 4 tiếng/lượt</span><span>Cabin nhóm: 2 lượt/tuần</span><span>Mở cửa bằng QR</span><span>Tự hủy sau 15′ nếu chưa quét</span></div>`;
+    return;
+  }
+  const s=ui.sel,c=cab(s.cabin),d=ui.draft;
+  let seatHTML='';
+  if(!c.group){
+    const free=freeSeatsRange(s.day,s.s,s.e);
+    if(!free.includes(d.seat))d.seat=free[0]||null;
+    seatHTML=`<div class="field"><span class="fs-legend" id="seat-lab">Chọn ghế (${free.length}/${SEATS} ghế trống xuyên suốt)</span><div class="seats" role="group" aria-labelledby="seat-lab">${Array.from({length:SEATS},(_,x)=>{const n=x+1,ok=free.includes(n);return `<button type="button" class="seat" id="seat-${n}" data-act="seat" data-seat="${n}" ${ok?'':'disabled'} aria-pressed="${d.seat===n}" aria-label="Ghế ${n}${ok?'':' (đã có người)'}">G${n}</button>`;}).join('')}</div></div>`;
+  }
+  const memHTML=c.group?`<div class="field"><span class="fs-legend">MSSV thành viên đi cùng <span class="muted">(tối thiểu 1)</span></span>${d.members.map((m,i)=>`<div class="mrow"><input type="text" class="mono-in" id="f-m-${i}" data-draft="m" data-i="${i}" inputmode="numeric" autocomplete="off" placeholder="MSSV thành viên ${i+1}" value="${esc(m)}" aria-label="MSSV thành viên ${i+1}">${d.members.length>1?`<button type="button" class="x-btn" data-act="rm-mem" data-i="${i}" aria-label="Xóa thành viên ${i+1}">×</button>`:''}</div>`).join('')}${d.members.length<9?'<button type="button" class="add-btn" data-act="add-mem">+ Thêm thành viên</button>':''}</div>`:'';
+  host.innerHTML=`<div class="p-head"><div><div class="eyebrow">${mgr?'Đăng ký hộ':'Đặt chỗ online'}</div><h2>${c.name} · ${c.sub}</h2>
+      <div class="p-when"><span class="mono">${timeRange(s.s,s.e)}</span> · ${dayLabel(s.day)} · ${hours(s.s,s.e)} tiếng</div></div>
+      <button type="button" class="link-btn" data-act="clear-sel">Bỏ chọn</button></div>
+    <form id="bk-form" novalidate>
+      <div class="field"><label for="f-mssv">MSSV người đại diện</label><input type="text" class="mono-in" id="f-mssv" data-draft="mssv" inputmode="numeric" autocomplete="off" placeholder="VD: 2311110245" value="${esc(d.mssv)}"></div>
+      <div class="field"><label for="f-name">Họ và tên</label><input type="text" id="f-name" data-draft="name" autocomplete="off" placeholder="Nguyễn Văn A" value="${esc(d.name)}"></div>
+      ${memHTML}${seatHTML}
+      ${mgr?`<label class="check"><input type="checkbox" id="f-now" data-draft="now" ${d.now?'checked':''}><span>Sinh viên đang đứng ở cửa cabin: mở cửa từ xa ngay sau khi đăng ký (chỉ áp dụng khi đã tới giờ)</span></label>`:''}
+      <div class="err" id="f-err" role="alert"></div>
+      <button type="submit" class="primary">${mgr?'Đăng ký hộ':'Xác nhận đặt chỗ'}</button>
+      <p class="fine">Quá 15 phút kể từ ${pad(SLOTS[s.s][0])}:00 mà chưa quét QR mở cửa, lượt đặt sẽ tự hủy, mã hết hiệu lực và khung giờ mở lại cho người khác.</p>
+    </form>`;
+}
+function ticketHTML(b,mgr){
+  const st=sStart(b.day,b.s),en=sEnd(b.day,b.e-1),c=cab(b.cabin);
+  const qrText=['CABIN-TOA-D',b.code,b.cabin+(b.seat?'-G'+b.seat:''),b.day,timeRange(b.s,b.e),b.rep.mssv].join('|');
+  const live=isActive(b);
+  return `<div class="eyebrow">${mgr?'Đã đăng ký hộ':'Đặt chỗ thành công'}</div>
+    <div class="tag" style="margin-top:10px"><div class="tag-word">QR MỞ CỬA</div><div class="tag-sub">${esc(cabinLabel(b))}</div>
+      <div class="qr" data-qr="${esc(qrText)}"></div><div class="tag-code">${b.code}</div></div>
+    <dl class="kv"><dt>Ngày</dt><dd>${dayLabel(b.day)}</dd><dt>Giờ</dt><dd class="mono">${timeRange(b.s,b.e)}</dd><dt>Đại diện</dt><dd>${esc(b.rep.name)} · <span class="mono">${b.rep.mssv}</span></dd>${c.group?`<dt>Thành viên</dt><dd class="mono">${b.members.join(', ')}</dd>`:''}<dt>Trạng thái</dt><dd><span class="pill st-${b.status}">${ST[b.status]}</span></dd></dl>
+    ${b.status==='booked'?`<ol class="steps"><li><span><b>Quét mã ở khóa cửa ${c.name} từ ${hm(openFrom(b))}</b>Mã chỉ mở cửa trong khung ${timeRange(b.s,b.e)}. Chỉ người đại diện giữ mã này.</span></li>
+      <li><span><b>Tự hủy lúc ${hm(deadline(b))}</b>nếu chưa quét mã mở cửa.</span></li>
+      <li><span><b>Từ ${hm(en-10*60000)}: dọn dẹp</b>Trả bàn ghế về vị trí, đóng cửa khi rời. Cửa tự khóa và mã hết hiệu lực lúc ${hm(en)}.</span></li></ol>`:b.status==='checked_in'?`<p class="fine" style="margin-top:12px">Cửa đã mở${b.openedBy==='remote'?' từ xa':''} lúc ${hm(b.checkinAt)}. Người đại diện quét lại mã để ra vào đến ${hm(en)}. Nhắc dọn dẹp từ ${hm(en-10*60000)}.</p>`:''}
+    <div class="btn-row">${live?`<button class="secondary" data-act="sim-scan" data-id="${b.id}">Mô phỏng quét ở cửa</button>`:''}${mgr?'':'<button class="secondary" data-act="goto-my">Lượt đặt của tôi</button>'}<button class="secondary" data-act="new-booking">Đặt lượt khác</button></div>`;
+}
+function drawQRs(root){
+  root.querySelectorAll('[data-qr]').forEach(el=>{
+    if(el.dataset.drawn)return;el.dataset.drawn='1';
+    try{new QRCode(el,{text:el.dataset.qr.replace(/[^\x00-\x7F]/g,'-'),width:264,height:264,colorDark:'#15201B',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});el.removeAttribute('title');}
+    catch(e){el.innerHTML='<div class="qr-fallback">Mã QR không tải được: dùng mã đặt chỗ bên dưới</div>';}
+  });
+}
+
+/* ================= render: my bookings ================= */
+function renderMy(){
+  const host=$('#my-list'),m=ui.myMssv;
+  if(!m){host.innerHTML='<div class="empty">Nhập MSSV (của người đại diện hoặc thành viên) để xem, hủy hoặc gia hạn lượt đặt.</div>';return;}
+  const T=today(),N=now();
+  const mine=S.bookings.filter(b=>people(b).includes(m));
+  const up=mine.filter(isActive).sort((a,b)=>(a.day+pad(a.s)).localeCompare(b.day+pad(b.s)));
+  const past=mine.filter(b=>!isActive(b)).sort((a,b)=>(b.day+pad(b.s)).localeCompare(a.day+pad(a.s)));
+  const used=weekGroupCount(m,T);
+  let h=`<div class="quota"><span class="pips">${Array.from({length:WEEK_LIMIT},(_,i)=>`<i class="${i<used?'on':''}"></i>`).join('')}</span><span>Cabin nhóm tuần này: <b>${Math.min(used,WEEK_LIMIT)}/${WEEK_LIMIT}</b> lượt</span></div>`;
+  if(!mine.length){host.innerHTML=h+'<div class="empty">Chưa có lượt đặt nào cho MSSV <span class="mono">'+esc(m)+'</span>.</div>';return;}
+  const item=b=>{
+    const g=cab(b.cabin).group,rep=b.rep.mssv===m;let acts='',note='';
+    if(b.status==='booked'){
+      const dl=deadline(b);
+      note=N<openFrom(b)?`Quét QR ở cửa từ ${hm(openFrom(b))} · tự hủy lúc ${hm(dl)} nếu chưa quét`:`Đã tới giờ: quét QR ở cửa trước ${hm(dl)} (còn ${Math.max(0,Math.ceil((dl-N)/60000))} phút)`;
+      if(rep)acts+=`<button data-act="qr" data-id="${b.id}">${ui.qrOpen[b.id]?'Ẩn mã QR':'Hiện mã QR mở cửa'}</button><button data-act="sim-scan" data-id="${b.id}">Mô phỏng quét ở cửa</button><button class="danger" data-act="cancel" data-id="${b.id}">Hủy lượt đặt</button>`;
+      else note+=' · Mã mở cửa do người đại diện giữ';
+    }else if(b.status==='checked_in'){
+      const er=extendError(b);
+      note=`Cửa đã mở ${b.openedBy==='remote'?'từ xa':'bằng QR'} lúc ${hm(b.checkinAt)} · kết thúc ${hm(sEnd(b.day,b.e-1))}`;
+      if(rep){acts+=`<button class="go" data-act="extend" data-id="${b.id}" ${er?'disabled':''}>Gia hạn thêm 1 ca</button><button data-act="qr" data-id="${b.id}">${ui.qrOpen[b.id]?'Ẩn mã QR':'Hiện mã QR mở cửa'}</button><button data-act="leave" data-id="${b.id}">Trả phòng sớm</button>`;if(er)note+=' · '+er;}
+      else note+=' · Mã mở cửa do người đại diện giữ';
+    }else if(b.status==='expired'){note='Không quét QR trong 15 phút đầu nên hệ thống đã hủy và vô hiệu mã.';}
+    return `<article class="item"><div class="item-top"><span class="pill st-${b.status}">${ST[b.status]}</span><h3>${esc(cabinLabel(b))}</h3><span class="when">${b.day===T?'Hôm nay':dayLabel(b.day)} · ${timeRange(b.s,b.e)}</span></div>
+      <div class="meta"><span>Mã <b class="mono">${b.code}</b></span><span>Đại diện <b>${esc(b.rep.name)}</b></span>${g?`<span>Thành viên <b class="mono">${b.members.join(', ')}</b></span>`:''}<span>${b.channel==='offline'?'Đăng ký hộ':'Đặt online'}</span></div>
+      ${note?`<p class="note">${note}</p>`:''}${ui.qrOpen[b.id]&&rep&&isActive(b)?`<div class="qr" data-qr="${esc(['CABIN-TOA-D',b.code,b.cabin+(b.seat?'-G'+b.seat:''),b.day,timeRange(b.s,b.e),b.rep.mssv].join('|'))}"></div>`:''}
+      ${acts?`<div class="acts">${acts}</div>`:''}</article>`;
+  };
+  h+=`<div class="list">${up.map(item).join('')||'<div class="empty">Không có lượt đặt sắp tới.</div>'}</div>`;
+  if(past.length)h+=`<div class="sec-h block"><h2>Lịch sử</h2></div><div class="list">${past.slice(0,8).map(item).join('')}</div>`;
+  host.innerHTML=h;drawQRs(host);
+}
+
+/* ================= render: manager desk ================= */
+function doorState(c){
+  const T=today(),N=now(),day0=at(T,0);
+  const mine=S.bookings.filter(b=>b.day===T&&b.cabin===c.id);
+  const inUse=mine.filter(b=>b.status==='checked_in');
+  const waiting=mine.filter(b=>b.status==='booked'&&N>=openFrom(b));
+  const next=mine.filter(b=>b.status==='booked'&&sStart(b.day,b.s)>N).sort((a,b)=>a.s-b.s)[0];
+  const last=S.access.find(a=>a.cabin===c.id&&a.ok&&a.t>=day0);
+  let led='',head='ĐANG KHÓA',text='Trống · cửa đang khóa';
+  if(c.group){
+    if(inUse.length){const b=inUse[0];led='ok';head='ĐANG SỬ DỤNG';text=`Nhóm ${b.rep.name} · đến ${hm(sEnd(b.day,b.e-1))}`;}
+    else if(waiting.length){const b=waiting[0];led='wait';head='CHỜ QUÉT QR';text=`${b.rep.name} · ${timeRange(b.s,b.e)}`;}
+  }else{
+    if(inUse.length){led='ok';head='ĐANG SỬ DỤNG';text=`${inUse.length}/${SEATS} ghế đang dùng`+(waiting.length?` · ${waiting.length} lượt chờ quét`:'');}
+    else if(waiting.length){led='wait';head='CHỜ QUÉT QR';text=`${waiting.length} lượt đã tới giờ, chưa quét`;}
+  }
+  return {c,led,head,text,
+    last:last?`Mở gần nhất ${hm(last.t)} · ${last.by==='remote'?'từ xa':'bằng QR'} · ${last.name}`:'Chưa mở lần nào hôm nay',
+    next:next?`Lượt kế tiếp ${pad(SLOTS[next.s][0])}:00 · ${next.rep.name}`:'Không còn lượt nào hôm nay'};
+}
+function renderAlog(){
+  const el=$('#alog');if(!el)return;
+  const day0=at(today(),0),rows=S.access.filter(a=>a.t>=day0).slice(0,24);
+  el.innerHTML=rows.length?rows.map(a=>`<li><time>${hm(a.t)}</time><span class="${a.ok?'ok':'no'}" aria-label="${a.ok?'Mở được':'Bị từ chối'}">${a.ok?'✓':'✗'}</span><span>${esc(cab(a.cabin).name)}${a.seat?' · G'+a.seat:''} · <span class="mono">${esc(a.code)}</span>${a.name?' · '+esc(a.name):''}: ${esc(a.reason)}${a.by==='remote'?' (quản lý mở từ xa)':''}</span></li>`).join('')
+    :'<li><time></time><span></span><span class="muted">Chưa có lượt quét nào hôm nay.</span></li>';
+}
+function renderDoors(){
+  const host=$('#doors');if(!host)return;
+  const T=today(),N=now();
+  host.innerHTML=CABINS.map(c=>{
+    const d=doorState(c),r=ui.scanRes[c.id],fresh=r&&N-r.t<10*60000;
+    const codes=S.bookings.filter(b=>b.day===T&&b.cabin===c.id&&isActive(b)).sort((a,b)=>a.s-b.s||(a.seat||0)-(b.seat||0)).slice(0,5);
+    return `<article class="door" aria-label="Khóa cửa ${c.name}">
+      <div class="door-top"><div><span class="door-no">CABIN ${c.no}</span><small>${c.sub}</small></div></div>
+      <div class="screen" aria-live="polite"><div class="st"><span class="led ${d.led}"></span>${d.head}</div><p>${esc(d.text)}</p><p class="dim">${esc(d.next)}</p>
+        ${fresh?`<div class="res ${r.ok?'ok':'no'}"><b>${r.ok?'✓':'✗'} ${r.title}</b><span>${esc(r.detail)}</span></div>`:''}</div>
+      <form class="scan" data-cabin="${c.id}" novalidate><input type="text" id="scan-${c.id}" autocomplete="off" placeholder="Nhập mã, VD: KZ-AB12" value="${esc(ui.scanDraft[c.id]||'')}" aria-label="Mã đặt chỗ để quét ở ${c.name}"><button type="submit">Quét</button></form>
+      ${codes.length?`<div class="codechips"><span>Mã hôm nay:</span>${codes.map(b=>`<button type="button" data-act="scan-chip" data-cabin="${c.id}" data-code="${b.code}" title="${esc(b.rep.name+' · '+timeRange(b.s,b.e))}">${b.code}</button>`).join('')}</div>`:''}
+    </article>`;
+  }).join('');
+  renderAlog();
+}
+function scanCode(cabinId,raw){
+  let code=String(raw||'').trim().toUpperCase();
+  if(code.includes('|'))code=(code.split('|')[1]||'').trim();
+  const c=cab(cabinId),N=now(),T=today();
+  const b=S.bookings.find(x=>x.code===code);
+  const deny=reason=>{addAccess({cabin:cabinId,seat:b&&b.cabin===cabinId?b.seat:null,code:code||'(trống)',name:b?b.rep.name:'',ok:false,reason,by:'qr'});log(`${c.name}: khóa từ chối mã ${code||'(trống)'}, ${reason.toLowerCase()}.`);return {ok:false,title:'TỪ CHỐI',detail:reason};};
+  if(!code)return deny('Chưa có mã');
+  if(!b)return deny('Mã không có trong hệ thống');
+  if(b.cabin!==cabinId)return deny(`Mã của ${cabinLabel(b)}, không mở được ${c.name}`);
+  if(b.status==='expired')return deny('Lượt đặt đã tự hủy vì quá 15 phút chưa quét');
+  if(b.status==='cancelled')return deny('Lượt đặt đã bị hủy');
+  if(b.status==='completed')return deny('Lượt đặt đã kết thúc');
+  if(b.day!==T)return deny(`Mã dùng cho ${dayLabel(b.day)}`);
+  if(N<openFrom(b))return deny(`Chưa đến giờ · mở từ ${hm(openFrom(b))}`);
+  if(N>=sEnd(b.day,b.e-1))return deny('Đã hết giờ của lượt đặt');
+  const first=b.status==='booked';
+  if(first){b.status='checked_in';b.checkinAt=N;b.openedBy='qr';}
+  addAccess({cabin:cabinId,seat:b.seat,code,name:b.rep.name,ok:true,reason:first?'Nhận phòng':'Mở lại',by:'qr'});
+  log(`${cabinLabel(b)}: ${b.rep.name} quét QR, cửa mở${first?', nhận phòng tự động':' lại'}.`);
+  return {ok:true,title:'ĐÃ MỞ CỬA',detail:`${b.rep.name} · ${timeRange(b.s,b.e)}${b.seat?' · mời ngồi ghế G'+b.seat:''}`};
+}
+function doScan(cabinId,code){
+  let r;
+  mutate(()=>{r=scanCode(cabinId,code);ui.scanRes[cabinId]=Object.assign({t:now()},r);ui.scanDraft[cabinId]='';});
+  if(r)toast((r.ok?'Đã mở cửa ':'Khóa từ chối · ')+cab(cabinId).name,!r.ok);
+}
+
+function renderMgr(){
+  const T=today(),N=now(),q=ui.q.trim().toLowerCase(),day0=at(T,0);
+  const match=b=>!q||b.code.toLowerCase().includes(q)||people(b).some(p=>p.includes(q))||b.rep.name.toLowerCase().includes(q);
+  const queue=S.bookings.filter(b=>b.day===T&&b.status==='booked').sort((a,b)=>a.s-b.s||a.cabin.localeCompare(b.cabin));
+  const active=S.bookings.filter(b=>b.status==='checked_in').sort((a,b)=>sEnd(a.day,a.e-1)-sEnd(b.day,b.e-1));
+  const phase=b=>{const left=Math.ceil((sEnd(b.day,b.e-1)-N)/60000);return left<0?'over':left<=10?'clean':'ok';};
+  const needs=active.filter(b=>phase(b)!=='ok').length;
+  const opens=S.access.filter(a=>a.ok&&a.t>=day0).length,denied=S.access.filter(a=>!a.ok&&a.t>=day0).length;
+  const dueSoon=queue.filter(b=>sStart(b.day,b.s)-CHECKIN_EARLY_MIN*60000<=N).length;
+  $('#stats').innerHTML=`<div class="stat"><b>${active.length}</b><span>Đang sử dụng</span></div><div class="stat"><b>${dueSoon}</b><span>Sắp đến giờ, chờ quét QR</span></div><div class="stat ${needs?'alert':''}"><b>${needs}</b><span>Sắp hết giờ (≤10′), cần nhắc dọn dẹp</span></div><div class="stat"><b>${opens}<small> mở · ${denied} từ chối</small></b><span>Lượt quét QR hôm nay</span></div>`;
+
+  const qv=queue.filter(match);
+  $('#queue').innerHTML=qv.length?qv.map(b=>{
+    const g=cab(b.cabin).group,st=sStart(b.day,b.s),dl=deadline(b),open=openFrom(b);
+    const started=N>=st,minsLeft=Math.max(0,Math.ceil((dl-N)/60000)),canOpen=N>=open;
+    const due=started?`<span class="due hot">Chưa quét QR · tự hủy lúc ${hm(dl)} (còn ${minsLeft} phút)</span>`:`<span class="due">Bắt đầu sau ${fmtDur(Math.ceil((st-N)/60000))} · mã mở cửa từ ${hm(open)}</span>`;
+    let ro='';
+    if(ui.ro&&ui.ro.id===b.id){
+      ro=`<div class="ro"><span class="fs-legend">Chỉ dùng khi sinh viên gặp sự cố: hết pin, mất điện thoại, khóa lỗi</span>
+        <label class="check"><input type="checkbox" id="ro-ok-${b.id}" data-act="ro-ok" ${ui.ro.ok?'checked':''}><span>Đã đối chiếu người đại diện ${esc(b.rep.name)} · <span class="mono">${b.rep.mssv}</span></span></label>
+        <div class="acts"><button class="go" data-act="do-remote" data-id="${b.id}">Mở cửa ${esc(cab(b.cabin).name)}</button><button data-act="ro-close">Đóng</button></div></div>`;
+    }
+    return `<article class="item"><div class="item-top"><h3>${esc(cabinLabel(b))}</h3><span class="when">${timeRange(b.s,b.e)}</span></div>
+      <div class="meta"><span>Mã <b class="mono">${b.code}</b></span><span><b>${esc(b.rep.name)}</b> · <span class="mono">${b.rep.mssv}</span></span>${g?`<span>${b.members.length+1} người</span>`:''}<span>${b.channel==='offline'?'Đăng ký hộ':'Online'}</span></div>
+      ${due}${ro||`<div class="acts"><button data-act="ro-open" data-id="${b.id}" ${canOpen?'':'disabled'}>Mở cửa từ xa</button>${canOpen?'':`<span class="note">Dùng được từ ${hm(open)}</span>`}</div>`}</article>`;
+  }).join(''):`<div class="empty">${q?'Không tìm thấy lượt đặt phù hợp.':'Không còn lượt nào chờ quét QR hôm nay.'}</div>`;
+
+  const av=active.filter(match);
+  $('#active').innerHTML=av.length?av.map(b=>{
+    const st=sStart(b.day,b.s),en=sEnd(b.day,b.e-1),p=phase(b),left=Math.ceil((en-N)/60000);
+    const pct=Math.min(100,Math.max(0,(N-st)/(en-st)*100));
+    const lab=p==='over'?`Quá giờ ${-left} phút: nhắc trả phòng`:p==='clean'?`Còn ${left} phút · 10 phút cuối: nhắc dọn dẹp`:`Còn ${fmtDur(left)}`;
+    const er=extendError(b);
+    return `<article class="item ${p==='ok'?'':p}"><div class="item-top"><h3>${esc(cabinLabel(b))}</h3><span class="when">${timeRange(b.s,b.e)}</span></div>
+      <div class="bar" role="progressbar" aria-valuenow="${Math.round(pct)}" aria-valuemin="0" aria-valuemax="100" aria-label="Thời gian đã dùng"><i style="width:${pct}%"></i></div>
+      <div class="item-top"><span class="left">${lab}</span>${b.remindedAt?`<span class="note">Đã nhắc lúc ${hm(b.remindedAt)}</span>`:''}</div>
+      <div class="meta"><span><b>${esc(b.rep.name)}</b></span><span>Mở cửa ${hm(b.checkinAt)} · ${b.openedBy==='remote'?'từ xa':'bằng QR'}</span></div>
+      <div class="acts"><button data-act="extend" data-id="${b.id}" ${er?'disabled title="'+esc(er)+'"':''}>Gia hạn +1 ca</button><button data-act="remind" data-id="${b.id}">Nhắc nhở</button><button class="go" data-act="checkout" data-id="${b.id}">Kết thúc lượt</button></div>
+      ${er&&p!=='ok'?`<p class="note">Không gia hạn được: ${er}</p>`:''}</article>`;
+  }).join(''):`<div class="empty">${q?'Không có cabin đang dùng khớp tìm kiếm.':'Chưa có cabin nào đang sử dụng.'}</div>`;
+
+  $('#dstat').innerHTML=CABINS.map(c=>{const d=doorState(c);return `<div class="dcard"><div class="row"><span class="led ${d.led}"></span>${c.name} · ${d.head.toLowerCase()}</div><div>${esc(d.text)}</div><div class="note">${esc(d.last)}</div><div class="note">${esc(d.next)}</div></div>`;}).join('');
+  renderAlog();
+  $('#log').innerHTML=S.log.slice(0,14).map(e=>`<li><time>${hm(e.t)}</time><span>${esc(e.text)}</span></li>`).join('');
+}
+
+/* ================= rules ================= */
+function rulesHTML(){
+  return `<div class="rules">
+  <section class="rcard"><h2>Tổng quan</h2><table><tbody>
+    <tr><td>Số lượng cabin</td><td>3 cabin: Cabin 1 (Nhóm A) và Cabin 2 (Nhóm B) học/họp nhóm; Cabin 3 học cá nhân, 7 ghế</td></tr>
+    <tr><td>Thời gian hoạt động</td><td>08:00–20:00, Thứ Hai đến Thứ Sáu</td></tr>
+    <tr><td>Đơn vị đặt chỗ</td><td>Block 1 tiếng; riêng ca cuối 17:00–20:00 là block 3 tiếng</td></tr>
+    <tr><td>Thời lượng</td><td>Tối thiểu 1 block, tối đa 4 tiếng liên tiếp mỗi lượt</td></tr>
+    <tr><td>Cabin nhóm</td><td>Tối thiểu 2 người; mỗi sinh viên tối đa 2 lượt/tuần (tính cả khi là thành viên)</td></tr>
+    <tr><td>Hình thức đăng ký</td><td>Online trên hệ thống này, hoặc nhờ quản lý nhà D đăng ký hộ. Bắt buộc đăng ký trước khi dùng</td></tr>
+    <tr><td>Mở cửa</td><td>Khóa QR ở mỗi cabin. Mã gửi cho người đại diện ngay khi đặt xong; không còn gửi thẻ SV hay nhận biển RESERVED</td></tr>
+    <tr><td>Người quản lý</td><td>Quản lý nhà D kiêm nhiệm, theo dõi qua màn hình Điều phối</td></tr>
+  </tbody></table></section>
+  <section class="rcard"><h2>Kiểm soát ra vào</h2><ul>
+    <li>Khóa chỉ mở với mã còn hiệu lực, đúng cabin, đúng ngày và trong khung giờ đã đặt (từ 5 phút trước giờ bắt đầu).</li>
+    <li>Lần quét đầu tiên được tính là nhận phòng. Trong giờ đã đặt, người đại diện quét lại để ra vào.</li>
+    <li>Mã hết hiệu lực khi lượt kết thúc, bị hủy hoặc tự hủy. Cửa tự khóa khi đóng.</li>
+    <li>Mọi lần quét, kể cả lần bị từ chối, đều được ghi vào Nhật ký ra vào kèm giờ, mã và người đặt.</li>
+  </ul></section>
+  <section class="rcard wide"><h2>Quy trình 3 bước</h2><div class="flow">
+    <div><b>Bước 1</b><h3>Đặt chỗ</h3><p>Chọn 1–4 ô liền kề. Điền MSSV người đại diện, cabin nhóm thêm ít nhất 1 MSSV thành viên. Người đại diện nhận ngay mã QR mở cửa.</p></div>
+    <div><b>Bước 2</b><h3>Quét QR ở cửa</h3><p>Từ 5 phút trước giờ bắt đầu, người đại diện quét mã vào khóa cửa cabin. Cửa mở và hệ thống tự ghi nhận phòng. Quá 15 phút chưa quét, lượt tự hủy.</p></div>
+    <div><b>Bước 3</b><h3>Rời đi</h3><p>10 phút cuối dọn dẹp, trả bàn ghế về vị trí, đóng cửa. Cửa tự khóa, mã hết hiệu lực khi hết giờ. Xong sớm thì bấm Trả phòng sớm để nhường giờ còn lại.</p></div>
+  </div></section>
+  <section class="rcard"><h2>Hủy slot & gia hạn</h2><ul>
+    <li><b>Tự hủy:</b> quá 15 phút kể từ đầu giờ mà chưa quét QR (VD đặt 08:00, tới 08:15 chưa quét). Mã bị vô hiệu, khung giờ mở lại cho người khác.</li>
+    <li><b>Gia hạn:</b> khi đang dùng, nếu ô tiếp theo còn Trống, người đại diện gia hạn ngay trên hệ thống. Tổng không quá 4 tiếng liên tiếp.</li>
+    <li><b>Trả phòng sớm:</b> người đại diện bấm Trả phòng sớm; các giờ còn lại được mở cho người khác.</li>
+  </ul></section>
+  <section class="rcard"><h2>Vai trò quản lý nhà D</h2><ul>
+    <li>Theo dõi trạng thái 3 cửa và Nhật ký ra vào trên màn hình Điều phối.</li>
+    <li>Mở cửa từ xa khi sinh viên gặp sự cố (hết pin, mất điện thoại), sau khi đối chiếu MSSV người đại diện.</li>
+    <li>Nhắc nhở khi còn 10 phút và khi quá giờ; kết thúc lượt khi cần.</li>
+    <li>Đăng ký hộ cho sinh viên không đặt online được.</li>
+    <li>Kiểm tra trang thiết bị và vệ sinh đầu, cuối ngày.</li>
+  </ul></section>
+  <section class="rcard"><h2>Vệ sinh</h2><ul>
+    <li>Sinh viên tự dọn dẹp trong 10 phút cuối ca; lao công dọn đầu ngày và cuối ngày.</li>
+    <li>Nhật ký ra vào cho biết nhóm nào dùng cabin trước khi phát hiện bừa bộn hoặc hư hỏng.</li>
+  </ul></section>
+  </div>`;
+}
+
+/* ================= actions ================= */
+function clickCell(c,i){
+  const day=ui.day,sel=ui.sel&&ui.sel.day===day?ui.sel:null;
+  const st=cellState(day,c,i);
+  if(ui.role==='manager'&&st.b&&!(sel&&sel.cabin===c&&(i===sel.e||i===sel.s-1))){ui.q=st.b.code;ui.tab='dieu-phoi';render();return;}
+  let next;
+  if(!sel||sel.cabin!==c)next={day,cabin:c,s:i,e:i+1};
+  else if(i>=sel.s&&i<sel.e){
+    if(sel.e-sel.s===1)next=null;
+    else if(i===sel.s)next={day,cabin:c,s:i+1,e:sel.e};
+    else if(i===sel.e-1)next={day,cabin:c,s:sel.s,e:i};
+    else next={day,cabin:c,s:i,e:i+1};
+  }
+  else if(i===sel.e)next={day,cabin:c,s:sel.s,e:i+1};
+  else if(i===sel.s-1)next={day,cabin:c,s:i,e:sel.e};
+  else next={day,cabin:c,s:i,e:i+1};
+  if(next){const er=rangeError(next.day,next.cabin,next.s,next.e);if(er){toast(er,true);return;}}
+  ui.sel=next;ui.done=null;
+  renderGrid();renderPanel();renderSelbar();
+}
+function submitBooking(){
+  const s=ui.sel,d=ui.draft,c=cab(s.cabin),mgr=ui.role==='manager';
+  const errEl=$('#f-err');const fail=m=>{errEl.textContent=m;};
+  const mssv=d.mssv.trim(),name=d.name.trim().replace(/\s+/g,' ');
+  const re=/^\d{8,12}$/;
+  if(!re.test(mssv))return fail('MSSV người đại diện gồm 8–12 chữ số.');
+  if(name.length<2)return fail('Nhập họ và tên người đại diện.');
+  let members=[];
+  if(c.group){
+    members=d.members.map(x=>x.trim()).filter(Boolean);
+    if(!members.length)return fail('Học nhóm cần thêm ít nhất 1 MSSV thành viên (tránh trường hợp dùng một mình).');
+    const bad=members.find(x=>!re.test(x));if(bad)return fail('MSSV thành viên "'+bad+'" không hợp lệ.');
+    if(members.includes(mssv))return fail('MSSV thành viên trùng với người đại diện.');
+    if(new Set(members).size!==members.length)return fail('Có MSSV thành viên bị trùng.');
+  }
+  const er=rangeError(s.day,s.cabin,s.s,s.e);if(er)return fail(er);
+  if(!c.group&&!freeSeatsRange(s.day,s.s,s.e).includes(d.seat))return fail('Chọn một ghế còn trống.');
+  const all=[mssv].concat(members);
+  for(const p of all){
+    const x=personConflicts(p,s.day,s.s,s.e);
+    if(x)return fail('MSSV '+p+' đã có lượt đặt trùng giờ ('+cabinLabel(x)+', '+timeRange(x.s,x.e)+').');
+    if(c.group&&weekGroupCount(p,s.day)>=WEEK_LIMIT)return fail('MSSV '+p+' đã dùng hết '+WEEK_LIMIT+' lượt cabin nhóm trong tuần này.');
+  }
+  const N=now(),inNow=mgr&&d.now&&N>=sStart(s.day,s.s)-OPEN_EARLY_MIN*60000;
+  const b={id:'b'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),code:newCode(S.bookings),day:s.day,cabin:s.cabin,seat:c.group?null:d.seat,s:s.s,e:s.e,
+    rep:{mssv,name},members,status:inNow?'checked_in':'booked',channel:mgr?'offline':'online',createdAt:N,
+    checkinAt:inNow?N:null,checkoutAt:null,remindedAt:null,openedBy:inNow?'remote':null};
+  S.bookings.push(b);
+  if(inNow)addAccess({cabin:b.cabin,seat:b.seat,code:b.code,name,ok:true,reason:'Nhận phòng',by:'remote'});
+  log(`${cabinLabel(b)}: ${name} ${mgr?'được quản lý nhà D đăng ký hộ':'đặt online'} ${timeRange(b.s,b.e)} ${b.day===today()?'hôm nay':dayLabel(b.day)} (${b.code})${inNow?', mở cửa từ xa ngay':''}.`);
+  save();
+  ui.done=b.id;ui.sel=null;
+  if(!mgr){ui.myMssv=mssv;savePref();}
+  ui.draft={mssv:'',name:'',members:[''],seat:null,now:true};
+  renderPanel();renderGrid();renderSelbar();
+  toast(mgr?'Đã đăng ký hộ · '+b.code:'Đặt chỗ thành công · '+b.code);
+  if(matchMedia('(max-width:900px)').matches)$('#panel').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function autoCancel(){
+  const N=now();let changed=false;
+  S.bookings.forEach(b=>{
+    if(b.status==='booked'&&N>deadline(b)){
+      b.status='expired';changed=true;
+      log(`${cabinLabel(b)}: ${b.rep.name} không quét QR sau 15 phút, hệ thống tự hủy ${b.code} và vô hiệu mã. Khung ${timeRange(b.s,b.e)} đã mở lại.`);
+      if(ui.role==='manager')toast('Tự hủy '+b.code+' · '+cabinLabel(b));
+    }else if(b.status==='checked_in'&&N>=sEnd(b.day,b.e-1)){
+      b.status='completed';b.checkoutAt=sEnd(b.day,b.e-1);changed=true;
+      log(`${cabinLabel(b)}: hết giờ lượt của ${b.rep.name}, mã hết hiệu lực, cửa tự khóa.`);
+    }
+  });
+  return changed;
+}
+function mutate(fn){fn();save();renderLive();if(ui.tab==='lich'&&ui.done)renderPanel();}
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-act]');if(!t)return;
+  const a=t.dataset.act,id=t.dataset.id;
+  switch(a){
+    case 'role':ui.role=t.dataset.role;ui.tab=null;ui.sel=null;ui.done=null;ui.ro=null;savePref();render();window.scrollTo(0,0);break;
+    case 'tab':ui.tab=t.dataset.tab;ui.done=null;render();break;
+    case 'day':ui.day=t.dataset.day;renderDays();renderGrid();break;
+    case 'cell':clickCell(t.dataset.cabin,+t.dataset.i);break;
+    case 'clear-sel':ui.sel=null;renderGrid();renderPanel();renderSelbar();break;
+    case 'to-panel':$('#panel').scrollIntoView({behavior:'smooth',block:'start'});break;
+    case 'add-mem':ui.draft.members.push('');renderPanel();const inp=$('#f-m-'+(ui.draft.members.length-1));if(inp)inp.focus();break;
+    case 'rm-mem':ui.draft.members.splice(+t.dataset.i,1);renderPanel();break;
+    case 'seat':ui.draft.seat=+t.dataset.seat;renderPanel();break;
+    case 'new-booking':ui.done=null;renderPanel();break;
+    case 'goto-my':ui.tab='cua-toi';ui.done=null;render();break;
+    case 'my-go':{const v=$('#my-mssv').value.trim();ui.myMssv=v;savePref();renderMy();break;}
+    case 'my-sample':ui.myMssv=t.dataset.m;$('#my-mssv').value=t.dataset.m;savePref();renderMy();break;
+    case 'qr':ui.qrOpen[id]=!ui.qrOpen[id];renderMy();break;
+    case 'cancel':mutate(()=>{const b=find(id);if(b&&b.status==='booked'){b.status='cancelled';log(`${cabinLabel(b)}: ${b.rep.name} hủy lượt ${b.code} (${timeRange(b.s,b.e)}), mã hết hiệu lực.`);toast('Đã hủy '+b.code);}});break;
+    case 'extend':mutate(()=>{const b=find(id);const er=b&&extendError(b);if(er){toast(er,true);return;}b.e++;log(`${cabinLabel(b)}: gia hạn đến ${pad(SLOTS[b.e-1][1])}:00 (${b.code}), mã mở cửa có hiệu lực theo giờ mới.`);toast('Đã gia hạn đến '+pad(SLOTS[b.e-1][1])+':00');});break;
+    case 'remind':mutate(()=>{const b=find(id);b.remindedAt=now();log(`${cabinLabel(b)}: quản lý nhà D nhắc ${b.rep.name} dọn dẹp, trả phòng.`);toast('Đã ghi nhận nhắc nhở');});break;
+    case 'checkout':mutate(()=>{const b=find(id);if(!b||b.status!=='checked_in')return;const N=now(),en=sEnd(b.day,b.e-1);b.status='completed';b.checkoutAt=N;
+      log(`${cabinLabel(b)}: quản lý nhà D kết thúc lượt của ${b.rep.name}${N<en-60000?'; mở lại chỗ từ '+hm(N)+' đến '+hm(en):''}. Cửa khóa, mã hết hiệu lực.`);toast('Đã kết thúc lượt · '+b.code);});break;
+    case 'leave':mutate(()=>{const b=find(id);if(!b||b.status!=='checked_in')return;const N=now(),en=sEnd(b.day,b.e-1);b.status='completed';b.checkoutAt=N;
+      log(`${cabinLabel(b)}: ${b.rep.name} trả phòng sớm${N<en-60000?', mở lại chỗ từ '+hm(N)+' đến '+hm(en):''}. Mã hết hiệu lực.`);toast('Đã trả phòng · mã hết hiệu lực');});break;
+    case 'ro-open':ui.ro={id,ok:false};renderMgr();break;
+    case 'ro-close':ui.ro=null;renderMgr();break;
+    case 'do-remote':{
+      const b=find(id);if(!b||b.status!=='booked'||!ui.ro||ui.ro.id!==id){ui.ro=null;renderMgr();return;}
+      if(!ui.ro.ok){toast('Đánh dấu đã đối chiếu người đại diện trước khi mở cửa.',true);return;}
+      ui.ro=null;
+      mutate(()=>{b.status='checked_in';b.checkinAt=now();b.openedBy='remote';addAccess({cabin:b.cabin,seat:b.seat,code:b.code,name:b.rep.name,ok:true,reason:'Nhận phòng',by:'remote'});
+        log(`${cabinLabel(b)}: quản lý nhà D mở cửa từ xa cho ${b.rep.name} sau khi đối chiếu MSSV.`);toast('Đã mở cửa từ xa · '+b.code);});
+      break;}
+    case 'scan-chip':doScan(t.dataset.cabin,t.dataset.code);break;
+    case 'sim-scan':{const b=find(id);if(!b)break;ui.tab='cua';ui.done=null;render();window.scrollTo(0,0);doScan(b.cabin,b.code);break;}
+    case 'jump':clock.baseSim+=(+t.dataset.min)*60000;saveClock();tick(true);toast('Đã tua đến '+hm(now()));break;
+    case 'reset':
+      if(!t.classList.contains('armed')){t.classList.add('armed');t.textContent='Bấm lần nữa để khôi phục';setTimeout(()=>{t.classList.remove('armed');t.textContent='Làm mới demo';},3000);break;}
+      t.classList.remove('armed');t.textContent='Làm mới demo';
+      clock=defaultClock();saveClock();S=seed();save();
+      Object.assign(ui,{sel:null,done:null,ro:null,q:'',day:null,qrOpen:{},scanRes:{},scanDraft:{}});render();toast('Đã khôi phục dữ liệu mẫu · '+hm(now()));break;
+  }
+});
+document.addEventListener('change',e=>{
+  const t=e.target;
+  if(t.dataset.act==='ro-ok'&&ui.ro){ui.ro.ok=t.checked;}
+  else if(t.dataset.draft==='now'){ui.draft.now=t.checked;}
+});
+document.addEventListener('input',e=>{
+  const t=e.target,f=t.dataset.draft;
+  if(f==='mssv'||f==='name')ui.draft[f]=t.value;
+  else if(f==='m')ui.draft.members[+t.dataset.i]=t.value;
+  else if(t.id==='mgr-q'){ui.q=t.value;renderMgr();}
+  else if(t.id&&t.id.indexOf('scan-')===0){ui.scanDraft[t.id.slice(5)]=t.value;}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='my-mssv'){ui.myMssv=e.target.value.trim();savePref();renderMy();}});
+document.addEventListener('submit',e=>{
+  if(e.target.id==='bk-form'){e.preventDefault();submitBooking();}
+  else if(e.target.matches&&e.target.matches('form.scan')){e.preventDefault();const c=e.target.dataset.cabin;const inp=e.target.querySelector('input');doScan(c,inp?inp.value:'');}
+});
+
+/* sync giữa các tab trình duyệt (mở 1 tab Sinh viên + 1 tab Quản lý nhà D) */
+window.addEventListener('storage',e=>{
+  if(e.key===KEY){const s=load();if(s){S=s;renderLive();const ae=document.activeElement;if(!(ae&&ae.closest&&ae.closest('#panel')))renderPanel();}}
+  else if(e.key===CLOCK_KEY){const c=lsGet(CLOCK_KEY);if(c&&Math.abs((c.baseSim-c.baseReal)-(clock.baseSim-clock.baseReal))>1500){clock=c;tick(true);}}
+});
+
+/* ================= tick ================= */
+let lastMin=-1;
+function tick(force){
+  const changed=autoCancel();if(changed)save();
+  const m=Math.floor(now()/60000);
+  if(changed||force||m!==lastMin){lastMin=m;renderLive();if(changed&&ui.tab==='lich'&&ui.done)renderPanel();}
+  if(Date.now()-clock.lastSeen>10000)saveClock();
+}
+
+/* ================= boot ================= */
+clock=loadClock();S=load();
+if(!clock||!S){clock=clock||defaultClock();saveClock();S=seed();save();}
+if(ui.role==='manager'&&location.hash==='#sinhvien')ui.role='student';
+if(location.hash==='#bantruc'||location.hash==='#quanly')ui.role='manager';
+render();
+setInterval(tick,1000);
+})();
+</script>
+
+
+</body></html>
