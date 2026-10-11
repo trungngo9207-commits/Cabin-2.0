@@ -1,4 +1,4 @@
-<!doctype html><html data-theme="light"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="vi" data-theme="light"><head><meta charset=utf8><meta name="robots" content="noindex, nofollow"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Mô hình Cabin Tòa D</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -235,8 +235,8 @@ const INFO={
   power:{t:'Ổ điện chạy dọc sống bàn',b:'Máng điện nằm giữa hai nửa bàn, mỗi chỗ ngồi một ổ trong tầm tay. Trước đây mỗi bàn có 02 ổ đặt dưới gầm, rất khó với tới.',s:[['31.5%','gặp khó vì thiếu hoặc khó dùng ổ điện ở chỗ học hiện tại'],['36.0%','coi ổ điện là tiêu chí của không gian lý tưởng']]},
   power1:{t:'Ổ điện ngay trên từng bàn',b:'Mỗi bàn một cụm ổ đặt sát vách, trên mặt bàn, thay cho ổ dưới gầm bàn trước đây.',s:[['31.5%','gặp khó vì thiếu hoặc khó dùng ổ điện ở chỗ học hiện tại'],['36.0%','coi ổ điện là tiêu chí của không gian lý tưởng']]},
   ac:{t:'Điều hòa, thông gió và wifi riêng',b:'Kiểm tra lại công suất điều hòa, thêm thông gió và một điểm phát wifi riêng cho khu container. Đây là điều kiện để ngồi được trọn một lượt 4 tiếng.',s:[['50.0%','nhóm đã dùng thấy bí bách khi đông người'],['39.3%','coi wifi ổn định là tiêu chí lý tưởng']]},
-  sign:{t:'Số cabin, QR lịch trống, móc biển RESERVED',b:'Số cabin sơn lớn ngoài vách, trùng tên trên lịch đặt chỗ. QR cạnh cửa mở thẳng lịch trống. Móc treo biển RESERVED khi nhóm nhận phòng ở bàn trực.',s:[],n:'Khớp Bước 2 trong quy định đăng ký: nhận biển RESERVED treo trước cửa.'},
-  sign1:{t:'Số cabin và QR lịch trống',b:'Số 03 sơn lớn ở mặt dài, trùng tên trên lịch đặt chỗ. QR cạnh cửa mở thẳng lịch trống. Cabin cá nhân giữ chỗ theo ghế nên không cần biển RESERVED.',s:[]},
+  sign:{t:'Số cabin, QR lịch trống, khóa QR ở cửa',b:'Số cabin sơn lớn ngoài vách, trùng tên trên lịch đặt chỗ. QR cạnh cửa mở thẳng lịch trống. Nhóm đã đặt quét mã QR của lượt đặt vào khóa cửa, từ 5 phút trước giờ bắt đầu.',s:[],n:'Khớp quy định đặt chỗ: mở cửa bằng QR, không còn gửi thẻ SV hay nhận biển RESERVED ở bàn trực.'},
+  sign1:{t:'Số cabin và QR lịch trống',b:'Số 03 sơn lớn ở mặt dài, trùng tên trên lịch đặt chỗ. QR cạnh cửa mở thẳng lịch trống. Cabin cá nhân giữ chỗ theo ghế; mỗi lượt đặt có mã QR riêng để mở cửa.',s:[]},
   partition:{t:'Vách ngăn thấp giữa các chỗ',b:'Vách nỉ cao 1,2 m tách từng chỗ ngồi. Ngồi xuống là khuất tầm nhìn người bên cạnh, đứng lên vẫn thấy cả phòng.',s:[['52.8%','chọn yên tĩnh là tiêu chí số 1'],['50.0%','nhóm đã dùng đánh giá sự riêng tư cao nhất']]},
   window:{t:'Cửa sổ dán phim mờ nửa dưới, có rèm cản nhiệt',b:'Giữ nguyên kính để người bên ngoài thấy bên trong sáng và thoáng. Phim mờ nửa dưới che người đang ngồi, rèm cuốn cản nắng giờ trưa.',s:[['39.0%','nhóm chưa dùng ngại không gian nhỏ, bí'],['50.0%','nhóm đã dùng đánh giá sự riêng tư cao nhất']]},
   acoustic:{t:'Tấm tiêu âm ốp vách',b:'Tấm nỉ tiêu âm ốp mặt trong. Nhóm tranh luận thoải mái mà không làm phiền cabin kế bên, tiếng ồn bên ngoài cũng khó lọt vào.',s:[['37.1%','than tiếng ồn ở chỗ học hiện tại']]},
@@ -254,7 +254,7 @@ const CABINS=[
   chairs:[[142.6,34,'S'],[234.4,34,'S'],[331.3,34,'S'],[422.2,34,'S'],[143.5,191.3,'N'],[235.1,191.3,'N'],[332,191.3,'N'],[76.1,113.2,'E'],[488.4,113.2,'W']],
   bin:[531.7,36], board:{w:'E',u:112.5,len:160}, ac:{w:'N',u:530}, ap:{w:'N',u:50},
   panels:[['S',12,140],['S',252,318],['N',8,92],['N',488,572]], poster:{w:'S',u:350},
-  number:{w:'S',u:290}, qr:{w:'S',u:356}, label:{w:'S',u:170,h:0.2,text:'CABIN HỌC NHÓM · TÒA D'}, reserved:true,
+  number:{w:'S',u:290}, qr:{w:'S',u:356}, label:{w:'S',u:170,h:0.2,text:'CABIN HỌC NHÓM · TÒA D'},
   planters:[['S',330],['S',490]],
   lights:[[145,112.5],[290,112.5],[435,112.5]],
   eye:{cam:[30,205,1.6],look:[470,70,0.95]}, outDir:[0.55,1], cutDir:[-0.5,1],
@@ -268,7 +268,7 @@ const CABINS=[
   chairs:[[31.3,152.8,'E'],[31.3,244.3,'E'],[31.3,337,'E'],[31.3,426.3,'E'],[191.6,244.3,'W'],[191.6,337,'W'],[191.6,426.3,'W'],[111.7,84.7,'S'],[111.3,495.3,'N']],
   bin:[52.5,40.2], board:{w:'N',u:112.5,len:160}, ac:{w:'W',u:530}, ap:{w:'W',u:50},
   panels:[['E',270,314],['E',380,570],['W',8,93],['W',488,572]], poster:{w:'E',u:245},
-  number:{w:'E',u:285}, qr:{w:'E',u:234}, label:{w:'E',u:450,h:0.2,text:'CABIN HỌC NHÓM · TÒA D'}, reserved:true,
+  number:{w:'E',u:285}, qr:{w:'E',u:234}, label:{w:'E',u:450,h:0.2,text:'CABIN HỌC NHÓM · TÒA D'},
   planters:[['E',104],['E',264]],
   lights:[[112.5,145],[112.5,290],[112.5,435]],
   eye:{cam:[200,562,1.6],look:[50,120,0.95]}, outDir:[1,-0.42], cutDir:[1,0.62],
@@ -284,7 +284,7 @@ const CABINS=[
   chairs:[[159.5,81.5,'N'],[285.4,81.5,'N'],[413.2,81.5,'N'],[93.6,199.5,'W'],[158.7,199.5,'E'],[350.3,199.5,'W'],[411.5,199.5,'E']],
   bin:[43.8,32.1], ac:{w:'N',u:530}, ap:{w:'N',u:50},
   panels:[['S',6,118],['S',132,248],['S',262,374],['S',388,504],['S',516,574],['N',8,92],['N',488,572]], poster:{w:'E',u:100},
-  number:{w:'S',u:522}, qr:{w:'E',u:100}, label:{w:'S',u:250,h:0.32,text:'CABIN TỰ HỌC · TÒA D'}, reserved:false,
+  number:{w:'S',u:522}, qr:{w:'E',u:100}, label:{w:'S',u:250,h:0.32,text:'CABIN TỰ HỌC · TÒA D'},
   planters:[['E',76],['S',546]],
   lights:[[145,112.5],[290,112.5],[435,112.5]],
   eye:{cam:[548,108,1.55],look:[40,120,0.82]}, outDir:[1,0.85], cutDir:[0.9,1],
@@ -436,14 +436,6 @@ function qrCanvas(c,img){
   g.font='500 30px "JetBrains Mono", monospace';g.fillStyle='#5A6266';g.fillText('CABIN '+c.no,180,462);
   return cv;
 }
-function reservedCanvas(){
-  const cv=document.createElement('canvas');cv.width=300;cv.height=420;const g=cv.getContext('2d');
-  g.fillStyle='#E9B949';rr(g,0,0,300,420,28);g.fill();
-  g.fillStyle='#FFFFFF';g.beginPath();g.arc(150,54,20,0,Math.PI*2);g.fill();
-  g.fillStyle='#1D1606';g.font='64px "Saira Stencil One", "Arial Black", sans-serif';g.textAlign='center';
-  g.save();g.translate(150,250);g.rotate(-Math.PI/2);g.fillText('RESERVED',0,22);g.restore();
-  return cv;
-}
 function seatCanvas(label){
   const cv=document.createElement('canvas');cv.width=200;cv.height=120;const g=cv.getContext('2d');
   g.fillStyle='#FFFFFF';rr(g,0,0,200,120,18);g.fill();g.strokeStyle='#1D2124';g.lineWidth=6;rr(g,5,5,190,110,14);g.stroke();
@@ -585,10 +577,7 @@ function buildCabin(c,qrImg){
    const y=c.label.h>0.25?1.9:2.2;m.position.copy(WP(c,w,c.label.u,y,T+RIB_D+0.004));m.rotation.y=OUT_ROT[w];m.renderOrder=2;onWall(w,m);}
   // bảng QR
   {const w=c.qr.w;const g=new THREE.Group();const m=new THREE.Mesh(new THREE.PlaneGeometry(0.18,0.26),new THREE.MeshStandardMaterial({map:tex(qrCanvas(c,qrImg)),transparent:true,roughness:0.5}));g.add(m);
-   g.position.copy(WP(c,w,c.qr.u,1.32,T+RIB_D+0.008));g.rotation.y=OUT_ROT[w];onWall(w,g);
-   if(c.reserved){const hk=new THREE.Mesh(new THREE.CylinderGeometry(0.008,0.008,0.05,8),M.alu);hk.rotation.x=Math.PI/2;const hg=new THREE.Group();hg.add(hk);hk.position.set(0,0,0.02);
-     const tag=new THREE.Mesh(new THREE.PlaneGeometry(0.15,0.21),new THREE.MeshStandardMaterial({map:tex(reservedCanvas()),transparent:true,roughness:0.6,side:THREE.DoubleSide}));tag.position.set(0,-0.1,0.035);tag.rotation.x=-0.06;hg.add(tag);
-     hg.position.copy(WP(c,w,c.qr.u,1.78,T+RIB_D+0.004));hg.rotation.y=OUT_ROT[w];onWall(w,hg);}}
+   g.position.copy(WP(c,w,c.qr.u,1.32,T+RIB_D+0.008));g.rotation.y=OUT_ROT[w];onWall(w,g);}
 
   // mái hiên, bậc cửa, chậu cây
   let doorWall=null,door=null;Object.keys(c.walls).forEach(w=>c.walls[w].forEach(o=>{if(o.t==='door'){doorWall=w;door=o;}}));
@@ -821,7 +810,7 @@ new MutationObserver(applyTheme).observe(document.documentElement,{attributes:tr
 /* ================= start ================= */
 async function start(){
   const sample='CABIN HỌC NHÓM TỰ TÒA D Quét xem lịch trống SƠ ĐỒ BÀN GHẾ';
-  try{await Promise.race([Promise.all([document.fonts.load('700 64px "Be Vietnam Pro"',sample),document.fonts.load('400 64px "Saira Stencil One"','CABIN 0123 RESERVED'),document.fonts.load('500 32px "JetBrains Mono"','G1 CABIN 580 cm')]),new Promise(r=>setTimeout(r,3000))]);}catch(e){}
+  try{await Promise.race([Promise.all([document.fonts.load('700 64px "Be Vietnam Pro"',sample),document.fonts.load('400 64px "Saira Stencil One"','CABIN 0123'),document.fonts.load('500 32px "JetBrains Mono"','G1 CABIN 580 cm')]),new Promise(r=>setTimeout(r,3000))]);}catch(e){}
   const qrImg=await new Promise(r=>{const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=QR_SRC;});
   CABINS.forEach(c=>cabins.push(buildCabin(c,qrImg)));
   renderSwatches();

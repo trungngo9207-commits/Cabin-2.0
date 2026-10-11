@@ -1,4 +1,4 @@
-<!doctype html><html data-theme="light"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="vi" data-theme="light"><head><meta charset=utf8><meta name="robots" content="noindex, nofollow"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Cabin Tòa D</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -362,7 +362,7 @@ const CABINS=[
   {id:'C2',no:'02',name:'Cabin 2',sub:'Nhóm B',group:true},
   {id:'C3',no:'03',name:'Cabin 3',sub:'Cá nhân · 7 ghế',group:false}
 ];
-const SEATS=7, MAX_H=4, LATE_MIN=15, WEEK_LIMIT=2, CHECKIN_EARLY_MIN=30, OPEN_EARLY_MIN=5;
+const SEATS=7, GROUP_SEATS=9, MAX_H=4, LATE_MIN=15, WEEK_LIMIT=2, CHECKIN_EARLY_MIN=30, OPEN_EARLY_MIN=5;
 const KEY='kaizenz-cabin-v2', CLOCK_KEY='kaizenz-cabin-clock-v1', PREF_KEY='kaizenz-cabin-pref-v1';
 const ST={booked:'Chờ quét QR',checked_in:'Đang sử dụng',completed:'Đã kết thúc',expired:'Tự hủy · quá 15′',cancelled:'Đã hủy'};
 
@@ -498,6 +498,8 @@ function extendError(b){
   if(hours(b.s,b.e+1)>MAX_H)return 'Đã đủ tối đa 4 tiếng.';
   if(cab(b.cabin).group){if(!groupFree(b.day,b.cabin,b.e,b.e+1))return 'Ca tiếp theo đã có nhóm đặt.';}
   else if(!freeSeatsAt(b.day,b.e).includes(b.seat))return 'Ghế này đã có người đặt ca sau.';
+  const busy=people(b).find(p=>personConflicts(p,b.day,b.e,b.e+1,b.id));
+  if(busy)return 'MSSV '+busy+' đã có lượt đặt khác ở ca sau.';
   return null;
 }
 
@@ -614,7 +616,7 @@ function renderPanel(){
     if(!free.includes(d.seat))d.seat=free[0]||null;
     seatHTML=`<div class="field"><span class="fs-legend" id="seat-lab">Chọn ghế (${free.length}/${SEATS} ghế trống xuyên suốt)</span><div class="seats" role="group" aria-labelledby="seat-lab">${Array.from({length:SEATS},(_,x)=>{const n=x+1,ok=free.includes(n);return `<button type="button" class="seat" id="seat-${n}" data-act="seat" data-seat="${n}" ${ok?'':'disabled'} aria-pressed="${d.seat===n}" aria-label="Ghế ${n}${ok?'':' (đã có người)'}">G${n}</button>`;}).join('')}</div></div>`;
   }
-  const memHTML=c.group?`<div class="field"><span class="fs-legend">MSSV thành viên đi cùng <span class="muted">(tối thiểu 1)</span></span>${d.members.map((m,i)=>`<div class="mrow"><input type="text" class="mono-in" id="f-m-${i}" data-draft="m" data-i="${i}" inputmode="numeric" autocomplete="off" placeholder="MSSV thành viên ${i+1}" value="${esc(m)}" aria-label="MSSV thành viên ${i+1}">${d.members.length>1?`<button type="button" class="x-btn" data-act="rm-mem" data-i="${i}" aria-label="Xóa thành viên ${i+1}">×</button>`:''}</div>`).join('')}${d.members.length<9?'<button type="button" class="add-btn" data-act="add-mem">+ Thêm thành viên</button>':''}</div>`:'';
+  const memHTML=c.group?`<div class="field"><span class="fs-legend">MSSV thành viên đi cùng <span class="muted">(tối thiểu 1, tối đa ${GROUP_SEATS-1})</span></span>${d.members.map((m,i)=>`<div class="mrow"><input type="text" class="mono-in" id="f-m-${i}" data-draft="m" data-i="${i}" inputmode="numeric" autocomplete="off" placeholder="MSSV thành viên ${i+1}" value="${esc(m)}" aria-label="MSSV thành viên ${i+1}">${d.members.length>1?`<button type="button" class="x-btn" data-act="rm-mem" data-i="${i}" aria-label="Xóa thành viên ${i+1}">×</button>`:''}</div>`).join('')}${d.members.length<GROUP_SEATS-1?'<button type="button" class="add-btn" data-act="add-mem">+ Thêm thành viên</button>':''}</div>`:'';
   host.innerHTML=`<div class="p-head"><div><div class="eyebrow">${mgr?'Đăng ký hộ':'Đặt chỗ online'}</div><h2>${c.name} · ${c.sub}</h2>
       <div class="p-when"><span class="mono">${timeRange(s.s,s.e)}</span> · ${dayLabel(s.day)} · ${hours(s.s,s.e)} tiếng</div></div>
       <button type="button" class="link-btn" data-act="clear-sel">Bỏ chọn</button></div>
@@ -875,6 +877,7 @@ function submitBooking(){
     const bad=members.find(x=>!re.test(x));if(bad)return fail('MSSV thành viên "'+bad+'" không hợp lệ.');
     if(members.includes(mssv))return fail('MSSV thành viên trùng với người đại diện.');
     if(new Set(members).size!==members.length)return fail('Có MSSV thành viên bị trùng.');
+    if(members.length>GROUP_SEATS-1)return fail('Cabin nhóm có '+GROUP_SEATS+' chỗ: tối đa 1 đại diện + '+(GROUP_SEATS-1)+' thành viên.');
   }
   const er=rangeError(s.day,s.cabin,s.s,s.e);if(er)return fail(er);
   if(!c.group&&!freeSeatsRange(s.day,s.s,s.e).includes(d.seat))return fail('Chọn một ghế còn trống.');

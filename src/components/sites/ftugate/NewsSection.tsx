@@ -1,4 +1,5 @@
 import { ChevronRight, ChevronsRight, Megaphone } from "lucide-react";
+import { NewBadge } from "./NewBadge";
 
 export type NewsCard = { title: string; date: string; tag: string };
 export type NewsLine = { title: string; date: string; isNew?: boolean };
@@ -19,14 +20,14 @@ export function NewsSection({
           <Megaphone className="size-4 text-ftu" />
           {title}
         </h2>
-        <span className="flex cursor-pointer items-center text-ftu">
+        <span className="flex items-center text-ftu">
           Xem tiếp <ChevronRight className="size-4" />
         </span>
       </div>
       <div className="grid gap-4 p-3 md:grid-cols-[1fr_1fr_1.9fr]">
         {cards.map((c) => (
           <article key={c.title}>
-            <div className="grid aspect-[16/9] place-items-center rounded-lg bg-gradient-to-br from-[#ad171c] to-[#e2585d] px-3 text-center text-sm font-bold text-white">
+            <div className="grid aspect-[16/9] place-items-center rounded-lg bg-gradient-to-br from-[#ad171c] to-[#c0393e] px-3 text-center text-sm font-bold text-white">
               {c.tag}
             </div>
             <div className="mt-2 flex items-center gap-2 text-sm text-[#666]">
@@ -46,9 +47,7 @@ export function NewsSection({
                 <p className="flex-1 text-[15px]">
                   <ChevronsRight className="mr-1 inline size-4 text-ftu" />
                   {l.isNew ? (
-                    <span className="mr-1 rounded bg-[#ffc107] px-1 text-[11px] text-white">
-                      New
-                    </span>
+                    <span className="mr-1"><NewBadge /></span>
                   ) : null}
                   {l.title}
                 </p>

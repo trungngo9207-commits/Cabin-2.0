@@ -16,9 +16,9 @@ Cả hai chức năng đều có nút **Toàn màn hình**. Thoát bằng phím 
 
 ### Quy định đặt chỗ (mô phỏng trong app)
 
-- Mở cửa 08:00–20:00, thứ Hai đến thứ Sáu, mỗi ca 1 tiếng (ca cuối 17:00–20:00).
+- Mở cửa 08:00–20:00, thứ Hai đến thứ Sáu. Từ 08:00 đến 17:00 mỗi ca 1 tiếng; ca cuối là một khối 3 tiếng liền 17:00–20:00.
 - Tối đa 4 tiếng liên tiếp cho một lượt đặt; cabin nhóm tối đa 2 lượt/tuần mỗi người.
-- Cabin 1, 2 cho nhóm (cần MSSV người đại diện + ít nhất 1 thành viên); Cabin 3 có 7 ghế cá nhân.
+- Cabin 1, 2 cho nhóm, mỗi cabin 9 chỗ (MSSV người đại diện + 1 đến 8 thành viên); Cabin 3 có 7 ghế cá nhân.
 - Quét QR ở cửa từ 5 phút trước giờ bắt đầu; quá 15 phút chưa quét thì lượt đặt tự hủy.
 
 ## Yêu cầu
@@ -41,6 +41,8 @@ npm run dev
 ```
 
 Mở trình duyệt tại **http://localhost:3000**.
+
+`npm ci` có thể in vài dòng `npm warn install-scripts`. Đây chỉ là cảnh báo, không ảnh hưởng gì.
 
 Chưa có Node 24? Cài nhanh qua [nvm](https://github.com/nvm-sh/nvm) (macOS/Linux):
 
@@ -66,6 +68,8 @@ docker compose up app --build   # bản production
 docker compose up dev --build   # bản phát triển ở cổng 3001
 ```
 
+> Cấu hình Docker được giữ từ template gốc (ảnh build ở chế độ `standalone`) và chưa được kiểm thử trên dự án này.
+
 ### Kiểm tra code
 
 ```bash
@@ -75,20 +79,24 @@ npm run check   # lint + typecheck + build
 ## Cấu trúc dự án
 
 ```
-public/sites/ftugate/
-  dang-ky-cabin.html     # App đặt chỗ (HTML/CSS/JS thuần, lưu dữ liệu trong localStorage)
-  cabin-toa-d.html       # Mô hình 3D (three.js r147 + OrbitControls, tải từ CDN)
+public/
+  robots.txt             # Chặn công cụ tìm kiếm (đây là bản demo)
+  sites/ftugate/
+    dang-ky-cabin.html   # App đặt chỗ (HTML/CSS/JS thuần, lưu dữ liệu trong localStorage)
+    cabin-toa-d.html     # Mô hình 3D (three.js r147 + OrbitControls, tải từ CDN)
 src/
   app/
+    layout.tsx           # Bọc mọi trang trong PortalShell, metadata, noindex
     page.tsx             # Trang chủ cổng thông tin
     dang-ky-cabin/       # Route nhúng app đặt chỗ
     dat-cho-toa-d/       # Route nhúng mô hình 3D
-    layout.tsx, globals.css
+    globals.css
   components/sites/ftugate/
     nav.ts               # Menu trên + menu trái (thêm/sửa mục ở đây)
-    PortalShell.tsx      # Header, menu trái thu gọn được
+    PortalShell.tsx      # Thanh "BẢN DEMO", header, menu trái (đóng sẵn trên điện thoại)
     NewsSection.tsx      # Khối tin tức / thông báo
     EmbeddedApp.tsx      # Khung nhúng + nút toàn màn hình
+    NewBadge.tsx         # Nhãn "New"
 ```
 
 ## Chỉnh sửa
@@ -97,7 +105,8 @@ src/
 
 - Mô hình 3D được dựng bằng code three.js ngay trong `cabin-toa-d.html` (không dùng file `.glb`). Kích thước cabin, bàn ghế, màu sắc nằm trong phần `<script>`.
 - Hằng số của app đặt chỗ (`SLOTS`, `CABINS`, `SEATS`, `MAX_H`, `LATE_MIN`, `WEEK_LIMIT`...) nằm đầu phần `<script>` của `dang-ky-cabin.html`.
-- Cả hai file đặt `data-theme="light"` trên thẻ `<html>` để luôn hiển thị nền sáng cho hợp FTU Gate. Nếu thay bằng bản mới, nhớ giữ thuộc tính này.
+- Thẻ `<html>` của cả hai file có `lang="vi" data-theme="light"` (luôn nền sáng cho hợp FTU Gate), và `<head>` có `<meta name="robots" content="noindex, nofollow">`. Nếu thay bằng bản mới, nhớ giữ lại.
+- Sức chứa phải khớp giữa hai file: cabin nhóm 9 chỗ (`GROUP_SEATS` trong app đặt chỗ, `seats:9` trong mô hình 3D), Cabin 3 có 7 ghế (`SEATS`).
 - Dữ liệu đặt chỗ chỉ lưu trong trình duyệt của mỗi người (localStorage). Bấm **"Làm mới demo"** trong app để về dữ liệu mẫu.
 
 **Thêm mục menu:** sửa `src/components/sites/ftugate/nav.ts`.
