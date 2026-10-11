@@ -9,7 +9,7 @@
   --ground:#F0EEEE; --surface:#FFFFFF; --surface-2:#F7F5F5; --ink:#1C1718; --muted:#6A6263; --line:#DDD7D7;
   --accent:#B5121B; --accent-ink:#FFFFFF; --accent-soft:#FBE7E8;
   --sel:#1C1718; --sel-ink:#FFFFFF;
-  --free:#1C6E45; --free-bg:#DDF1E5; --busy:#B23A1E; --busy-bg:#FBE3DA; --use-bg:#F4CDBF;
+  --free:#1C6E45; --free-bg:#DDF1E5; --busy:#9A2F16; --busy-bg:#FBE3DA; --use-bg:#F4CDBF;
   --part:#94580A; --part-bg:#FBEBD2; --past-bg:#E7E4E4; --past-ink:#958C8D;
   --plate:#A5141C; --plate-rib:#8F1017; --plate-ink:#FFF1F1;
   --tag:#E9B949; --tag-ink:#1D1606;
@@ -121,7 +121,7 @@ tr.now .cell:not(.k-past){border-color:color-mix(in srgb,var(--accent) 45%,trans
 .panel h2{font-size:20px;margin-top:4px}
 .p-when{margin-top:4px;font-size:14px}
 .p-head{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:start;padding-bottom:14px;border-bottom:1px dashed var(--line);margin-bottom:14px}
-.link-btn{border:0;background:none;color:var(--accent);font-weight:600;font-size:13px;padding:2px 0}
+.link-btn{border:0;background:none;color:var(--accent);font-weight:600;font-size:13px;padding:6px 4px;min-height:32px}
 .steps{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px;counter-reset:s}
 .steps li{display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:14px;counter-increment:s}
 .steps li::before{content:counter(s);width:26px;height:26px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-weight:700;font-size:12.5px}
@@ -132,7 +132,7 @@ form{display:grid;gap:12px}
 .field{display:grid;gap:5px}
 .field label,.fs-legend{font-size:13px;font-weight:600}
 .field input[type=text]{width:100%;border:1px solid var(--line);background:var(--surface-2);border-radius:8px;padding:9px 11px;font-size:14.5px}
-.field input:focus{outline:none;border-color:var(--accent);background:var(--surface)}
+.field input:focus{outline:none;border-color:var(--accent);background:var(--surface);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 28%,transparent)}
 .field .mono-in{font-family:var(--mono)}
 .mrow{display:flex;gap:6px}
 .mrow input{flex:1;min-width:0}
@@ -171,7 +171,7 @@ dl.kv dd{margin:0;font-weight:600;min-width:0;overflow-wrap:anywhere}
 .lookup{display:flex;flex-wrap:wrap;gap:8px;align-items:end;margin-bottom:8px}
 .lookup .field{flex:1 1 220px}
 .samples{font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:18px}
-.samples button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:2px 10px;font-family:var(--mono);font-size:12px}
+.samples button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;min-height:30px;font-family:var(--mono);font-size:12px}
 .quota{display:flex;align-items:center;gap:10px;font-size:13.5px;margin-bottom:14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
 .quota .pips{display:flex;gap:4px}
 .quota .pips i{width:22px;height:8px;border-radius:2px;background:var(--line)}
@@ -284,7 +284,7 @@ form.scan input:focus{outline:none;border-color:var(--lock-ok)}
 form.scan button{border:0;background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:8px 14px;font-weight:700}
 .codechips{display:flex;flex-wrap:wrap;gap:6px;font-size:12px;align-items:center}
 .codechips span{opacity:.7}
-.codechips button{border:1px solid var(--lock-line);background:transparent;color:inherit;border-radius:999px;padding:2px 9px;font-family:var(--mono);font-size:11.5px}
+.codechips button{border:1px solid var(--lock-line);background:transparent;color:inherit;border-radius:999px;padding:4px 11px;min-height:30px;font-family:var(--mono);font-size:11.5px}
 .codechips button:hover{border-color:var(--lock-ok)}
 .alog li{grid-template-columns:48px 18px 1fr}
 .alog .ok{color:var(--free);font-weight:700}
@@ -345,13 +345,13 @@ form.scan button{border:0;background:var(--accent);color:var(--accent-ink);borde
 </header>
 
 <main class="wrap">
-  <nav class="tabs" id="tabs" role="tablist"></nav>
-  <div id="view"></div>
+  <div class="tabs" id="tabs" role="tablist" aria-label="Chức năng"></div>
+  <div id="view" role="tabpanel"></div>
 </main>
 <div class="selbar" id="selbar" hidden></div>
 <div class="toast" id="toast" role="status" hidden></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha384-3zSEDfvllQohrq0PHL1fOXJuC/jSOO34H46t6UQfobFOmxE5BpjjaIJY5F2/bMnU" crossorigin="anonymous"></script>
 <script>
 (function(){
 'use strict';
@@ -394,7 +394,7 @@ const fmtDur=m=>m>=60?Math.floor(m/60)+' giờ'+(m%60?' '+(m%60)+' phút':''):m+
 const AL='ABCDEFGHJKMNPQRSTUVWXYZ23456789';
 function newCode(list){let c;do{c='KZ-';for(let i=0;i<4;i++)c+=AL[Math.floor(Math.random()*AL.length)];}while(list.some(b=>b.code===c));return c;}
 function lsGet(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}}
-function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true;}catch(e){return false;}}
 
 /* ================= clock (giờ mô phỏng để demo) ================= */
 let clock;
@@ -419,26 +419,26 @@ function seed(){
   const mk=o=>{const b=Object.assign({id:'b'+(++n),channel:'online',createdAt:prev,members:[],seat:null,checkinAt:null,checkoutAt:null,remindedAt:null,openedBy:null},o);b.code=newCode(list);list.push(b);return b;};
   const open=(b,t)=>{b.status='checked_in';b.checkinAt=t;b.openedBy='qr';return b;};
   // Hôm nay
-  const a1=mk({day:D,cabin:'C1',s:0,e:1,rep:P('Nguyễn Minh Anh','2311110245'),members:['2311110312'],status:'completed',checkinAt:at(D,7,58),checkoutAt:at(D,8,52),openedBy:'qr'});
-  const a2=mk({day:D,cabin:'C1',s:1,e:3,rep:P('Trần Gia Huy','2211530118'),members:['2211530122','2211530140'],status:'booked'});
-  const a3=open(mk({day:D,cabin:'C2',s:0,e:2,rep:P('Lê Thảo Vy','2311150077'),members:['2311150081','2311150093']}),at(D,7,56));
-  mk({day:D,cabin:'C1',s:3,e:5,rep:P('Phạm Quốc Bảo','2411120056'),members:['2411120061'],status:'booked'});
-  mk({day:D,cabin:'C2',s:5,e:7,rep:P('Đỗ Khánh Linh','2311310204'),members:['2311310210','2311310222','2311310233'],status:'booked'});
-  mk({day:D,cabin:'C1',s:9,e:10,rep:P('Vũ Hải Nam','2111140019'),members:['2111140020'],status:'booked'});
-  const a7=open(mk({day:D,cabin:'C3',seat:1,s:0,e:3,rep:P('Hoàng Ngọc Hà','2411510033')}),at(D,7,59));
-  mk({day:D,cabin:'C3',seat:2,s:1,e:3,rep:P('Bùi Tuấn Kiệt','2311210150'),status:'booked'});
-  const a9=open(mk({day:D,cabin:'C3',seat:3,s:1,e:2,rep:P('Ngô Thu Trang','2211110087')}),at(D,8,57));
-  const a10=mk({day:D,cabin:'C3',seat:4,s:0,e:1,rep:P('Mai Anh Thư','2311610021'),status:'completed',checkinAt:at(D,8,1),checkoutAt:at(D,8,55),openedBy:'qr'});
-  mk({day:D,cabin:'C3',seat:5,s:3,e:5,rep:P('Đặng Mai Phương','2311410066'),status:'booked'});
-  mk({day:D,cabin:'C3',seat:6,s:3,e:4,rep:P('Lý Đức Thịnh','2411310012'),status:'booked'});
-  mk({day:D,cabin:'C3',seat:1,s:5,e:8,rep:P('Trịnh Bảo Ngọc','2211210045'),status:'booked'});
-  mk({day:D,cabin:'C3',seat:2,s:9,e:10,rep:P('Phan Nhật Minh','2311510198'),status:'booked'});
+  const a1=mk({day:D,cabin:'C1',s:0,e:1,rep:P('Nguyễn Minh Anh','9900000010'),members:['9900000011'],status:'completed',checkinAt:at(D,7,58),checkoutAt:at(D,8,52),openedBy:'qr'});
+  const a2=mk({day:D,cabin:'C1',s:1,e:3,rep:P('Trần Gia Huy','9900000007'),members:['9900000008','9900000009'],status:'booked'});
+  const a3=open(mk({day:D,cabin:'C2',s:0,e:2,rep:P('Lê Thảo Vy','9900000013'),members:['9900000014','9900000015']}),at(D,7,56));
+  mk({day:D,cabin:'C1',s:3,e:5,rep:P('Phạm Quốc Bảo','9900000024'),members:['9900000025'],status:'booked'});
+  mk({day:D,cabin:'C2',s:5,e:7,rep:P('Đỗ Khánh Linh','9900000017'),members:['9900000018','9900000019','9900000020'],status:'booked'});
+  mk({day:D,cabin:'C1',s:9,e:10,rep:P('Vũ Hải Nam','9900000001'),members:['9900000002'],status:'booked'});
+  const a7=open(mk({day:D,cabin:'C3',seat:1,s:0,e:3,rep:P('Hoàng Ngọc Hà','9900000027')}),at(D,7,59));
+  mk({day:D,cabin:'C3',seat:2,s:1,e:3,rep:P('Bùi Tuấn Kiệt','9900000016'),status:'booked'});
+  const a9=open(mk({day:D,cabin:'C3',seat:3,s:1,e:2,rep:P('Ngô Thu Trang','9900000003')}),at(D,8,57));
+  const a10=mk({day:D,cabin:'C3',seat:4,s:0,e:1,rep:P('Mai Anh Thư','9900000023'),status:'completed',checkinAt:at(D,8,1),checkoutAt:at(D,8,55),openedBy:'qr'});
+  mk({day:D,cabin:'C3',seat:5,s:3,e:5,rep:P('Đặng Mai Phương','9900000021'),status:'booked'});
+  mk({day:D,cabin:'C3',seat:6,s:3,e:4,rep:P('Lý Đức Thịnh','9900000026'),status:'booked'});
+  mk({day:D,cabin:'C3',seat:1,s:5,e:8,rep:P('Trịnh Bảo Ngọc','9900000004'),status:'booked'});
+  mk({day:D,cabin:'C3',seat:2,s:9,e:10,rep:P('Phan Nhật Minh','9900000022'),status:'booked'});
   // Các ngày tới
-  mk({day:D1,cabin:'C1',s:2,e:5,rep:P('Nguyễn Minh Anh','2311110245'),members:['2311110312','2311110330'],status:'booked'});
-  mk({day:D1,cabin:'C2',s:0,e:2,rep:P('Cao Hồng Nhung','2211410102'),members:['2211410115'],status:'booked'});
-  mk({day:D1,cabin:'C3',seat:3,s:1,e:4,rep:P('Ngô Thu Trang','2211110087'),status:'booked'});
-  mk({day:D1,cabin:'C3',seat:4,s:1,e:3,rep:P('Hoàng Ngọc Hà','2411510033'),status:'booked'});
-  mk({day:D2,cabin:'C2',s:6,e:9,rep:P('Trần Gia Huy','2211530118'),members:['2211530122'],status:'booked'});
+  mk({day:D1,cabin:'C1',s:2,e:5,rep:P('Nguyễn Minh Anh','9900000010'),members:['9900000011','9900000012'],status:'booked'});
+  mk({day:D1,cabin:'C2',s:0,e:2,rep:P('Cao Hồng Nhung','9900000005'),members:['9900000006'],status:'booked'});
+  mk({day:D1,cabin:'C3',seat:3,s:1,e:4,rep:P('Ngô Thu Trang','9900000003'),status:'booked'});
+  mk({day:D1,cabin:'C3',seat:4,s:1,e:3,rep:P('Hoàng Ngọc Hà','9900000027'),status:'booked'});
+  mk({day:D2,cabin:'C2',s:6,e:9,rep:P('Trần Gia Huy','9900000007'),members:['9900000008'],status:'booked'});
   const A=(t,b,ok,reason)=>({t,cabin:b.cabin,seat:b.seat,code:b.code,name:b.rep.name,ok,reason,by:'qr'});
   const access=[A(at(D,8,57),a9,true,'Nhận phòng'),A(at(D,8,41),a2,false,'Chưa đến giờ · mở từ 08:55'),A(at(D,8,1),a10,true,'Nhận phòng'),
     A(at(D,7,59),a7,true,'Nhận phòng'),A(at(D,7,58),a1,true,'Nhận phòng'),A(at(D,7,56),a3,true,'Nhận phòng')];
@@ -453,8 +453,27 @@ function seed(){
   ];
   return {v:2,bookings:list,log,access};
 }
-function load(){const s=lsGet(KEY);if(s&&s.v===2&&Array.isArray(s.bookings)){if(!Array.isArray(s.access))s.access=[];return s;}return null;}
-function save(){lsSet(KEY,S);}
+const MSSV_RE=/^\d{8,12}$/;
+const isStr=x=>typeof x==='string';
+function validBooking(b){
+  return !!b&&isStr(b.id)&&isStr(b.code)&&/^KZ-[A-Z0-9]{4}$/.test(b.code)&&isStr(b.day)&&/^\d{4}-\d{2}-\d{2}$/.test(b.day)
+    &&!!cab(b.cabin)&&Number.isInteger(b.s)&&Number.isInteger(b.e)&&b.s>=0&&b.s<b.e&&b.e<=SLOTS.length
+    &&!!b.rep&&MSSV_RE.test(b.rep.mssv)&&isStr(b.rep.name)&&Array.isArray(b.members)&&b.members.every(m=>MSSV_RE.test(m))
+    &&(b.seat===null||(Number.isInteger(b.seat)&&b.seat>=1&&b.seat<=SEATS))&&Object.prototype.hasOwnProperty.call(ST,b.status)&&typeof b.createdAt==='number';
+}
+const validAccess=a=>!!a&&typeof a.t==='number'&&!!cab(a.cabin)&&isStr(a.code)&&isStr(a.reason)&&(a.name==null||isStr(a.name))&&(a.seat==null||Number.isInteger(a.seat));
+function load(){
+  const s=lsGet(KEY);
+  if(!s||s.v!==2||!Array.isArray(s.bookings))return null;
+  s.bookings=s.bookings.filter(validBooking); // bỏ bản ghi hỏng thay vì làm trắng trang
+  s.access=Array.isArray(s.access)?s.access.filter(validAccess):[];
+  s.log=Array.isArray(s.log)?s.log.filter(l=>l&&typeof l.t==='number'&&isStr(l.text)):[];
+  return s;
+}
+let storeWarned=false;
+function save(){
+  if(!lsSet(KEY,S)&&!storeWarned){storeWarned=true;toast('Trình duyệt không lưu được dữ liệu: lượt đặt sẽ mất khi tải lại trang.',true);}
+}
 function log(text){S.log.unshift({t:now(),text});S.log=S.log.slice(0,40);}
 const find=id=>S.bookings.find(b=>b.id===id);
 function addAccess(o){S.access.unshift(Object.assign({t:now()},o));S.access=S.access.slice(0,80);}
@@ -468,6 +487,7 @@ function groupFree(day,c,s,e){for(let i=s;i<e;i++)if(activeAt(day,c,i).length)re
 const slotOpen=(day,i)=>sEnd(day,i)>now();
 function rangeError(day,c,s,e){
   if(hours(s,e)>MAX_H)return 'Tối đa 4 tiếng liên tiếp cho một lượt.';
+  if(ui.role!=='manager'&&now()>sStart(day,s)+LATE_MIN*60000)return 'Ca này đã bắt đầu quá '+LATE_MIN+' phút, hãy chọn ca sau.';
   for(let i=s;i<e;i++)if(!slotOpen(day,i))return 'Khung giờ này đã qua.';
   if(cab(c).group){if(!groupFree(day,c,s,e))return e-s>1?'Có khung giờ trong khoảng này đã được đặt.':'Khung giờ này đã có nhóm đặt.';}
   else if(!freeSeatsRange(day,s,e).length)return 'Không còn ghế trống xuyên suốt khoảng giờ này.';
@@ -488,6 +508,17 @@ function cellState(day,c,i){
 function personConflicts(p,day,s,e,exceptId){
   return S.bookings.find(b=>b.id!==exceptId&&b.day===day&&isActive(b)&&people(b).includes(p)&&b.s<e&&s<b.e);
 }
+// Gộp các lượt liền kề của cùng một người (kể cả lượt đã kết thúc) để tính số giờ liên tiếp.
+function chainHours(p,day,s,e,exceptId){
+  let grew=true;
+  while(grew){grew=false;
+    for(const b of S.bookings){
+      if(b.id===exceptId||b.day!==day||b.status==='cancelled'||b.status==='expired'||!people(b).includes(p))continue;
+      if(b.e===s){s=b.s;grew=true;}else if(b.s===e){e=b.e;grew=true;}
+    }
+  }
+  return hours(s,e);
+}
 function weekGroupCount(p,day){
   const w=weekOf(day);
   return S.bookings.filter(b=>cab(b.cabin).group&&weekOf(b.day)===w&&['booked','checked_in','completed'].includes(b.status)&&people(b).includes(p)).length;
@@ -499,6 +530,7 @@ function extendError(b){
   if(cab(b.cabin).group){if(!groupFree(b.day,b.cabin,b.e,b.e+1))return 'Ca tiếp theo đã có nhóm đặt.';}
   else if(!freeSeatsAt(b.day,b.e).includes(b.seat))return 'Ghế này đã có người đặt ca sau.';
   const busy=people(b).find(p=>personConflicts(p,b.day,b.e,b.e+1,b.id));
+  if(!busy){const tired=people(b).find(p=>chainHours(p,b.day,b.s,b.e+1,b.id)>MAX_H);if(tired)return 'MSSV '+tired+' sẽ ngồi quá '+MAX_H+' tiếng liên tiếp.';}
   if(busy)return 'MSSV '+busy+' đã có lượt đặt khác ở ca sau.';
   return null;
 }
@@ -520,7 +552,8 @@ function render(){
   $('#role-manager').setAttribute('aria-pressed',ui.role==='manager');
   const tabs=TABS[ui.role];
   if(!tabs.some(t=>t[0]===ui.tab))ui.tab=tabs[0][0];
-  $('#tabs').innerHTML=tabs.map(t=>`<button role="tab" id="tab-${t[0]}" data-act="tab" data-tab="${t[0]}" aria-selected="${ui.tab===t[0]}">${t[1]}</button>`).join('');
+  $('#tabs').innerHTML=tabs.map(t=>`<button role="tab" id="tab-${t[0]}" data-act="tab" data-tab="${t[0]}" aria-controls="view" aria-selected="${ui.tab===t[0]}" tabindex="${ui.tab===t[0]?0:-1}">${t[1]}</button>`).join('');
+  $('#view').setAttribute('aria-labelledby','tab-'+ui.tab);
   const v=$('#view');
   if(ui.tab==='lich'){
     v.innerHTML=`<div class="layout"><section aria-label="Lịch cabin"><div class="days" id="days"></div><div class="grid-wrap" id="grid"></div>
@@ -529,8 +562,8 @@ function render(){
       <aside class="panel" id="panel" aria-live="polite"></aside></div>`;
     renderPanel();
   }else if(ui.tab==='cua-toi'){
-    v.innerHTML=`<section class="narrow"><div class="lookup"><div class="field"><label for="my-mssv">Nhập MSSV để xem lượt đặt</label><input type="text" class="mono-in" id="my-mssv" inputmode="numeric" autocomplete="off" placeholder="VD: 2311110245" value="${esc(ui.myMssv)}"></div><button class="secondary" data-act="my-go">Xem</button></div>
-      <div class="samples">MSSV mẫu: <button data-act="my-sample" data-m="2211530118">2211530118</button><button data-act="my-sample" data-m="2311110245">2311110245</button><button data-act="my-sample" data-m="2411510033">2411510033</button></div>
+    v.innerHTML=`<section class="narrow"><div class="lookup"><div class="field"><label for="my-mssv">Nhập MSSV để xem lượt đặt</label><input type="text" class="mono-in" id="my-mssv" inputmode="numeric" autocomplete="off" placeholder="VD: 9900000010" value="${esc(ui.myMssv)}"></div><button class="secondary" data-act="my-go">Xem</button></div>
+      <div class="samples">MSSV mẫu: <button data-act="my-sample" data-m="9900000007">9900000007</button><button data-act="my-sample" data-m="9900000010">9900000010</button><button data-act="my-sample" data-m="9900000027">9900000027</button></div>
       <div id="my-list"></div></section>`;
   }else if(ui.tab==='dieu-phoi'){
     v.innerHTML=`<div id="stats" class="stats"></div>
@@ -621,7 +654,7 @@ function renderPanel(){
       <div class="p-when"><span class="mono">${timeRange(s.s,s.e)}</span> · ${dayLabel(s.day)} · ${hours(s.s,s.e)} tiếng</div></div>
       <button type="button" class="link-btn" data-act="clear-sel">Bỏ chọn</button></div>
     <form id="bk-form" novalidate>
-      <div class="field"><label for="f-mssv">MSSV người đại diện</label><input type="text" class="mono-in" id="f-mssv" data-draft="mssv" inputmode="numeric" autocomplete="off" placeholder="VD: 2311110245" value="${esc(d.mssv)}"></div>
+      <div class="field"><label for="f-mssv">MSSV người đại diện</label><input type="text" class="mono-in" id="f-mssv" data-draft="mssv" inputmode="numeric" autocomplete="off" placeholder="VD: 9900000010" value="${esc(d.mssv)}"></div>
       <div class="field"><label for="f-name">Họ và tên</label><input type="text" id="f-name" data-draft="name" autocomplete="off" placeholder="Nguyễn Văn A" value="${esc(d.name)}"></div>
       ${memHTML}${seatHTML}
       ${mgr?`<label class="check"><input type="checkbox" id="f-now" data-draft="now" ${d.now?'checked':''}><span>Sinh viên đang đứng ở cửa cabin: mở cửa từ xa ngay sau khi đăng ký (chỉ áp dụng khi đã tới giờ)</span></label>`:''}
@@ -742,6 +775,7 @@ function scanCode(cabinId,raw){
   if(b.day!==T)return deny(`Mã dùng cho ${dayLabel(b.day)}`);
   if(N<openFrom(b))return deny(`Chưa đến giờ · mở từ ${hm(openFrom(b))}`);
   if(N>=sEnd(b.day,b.e-1))return deny('Đã hết giờ của lượt đặt');
+  if(b.status==='booked'&&N>deadline(b))return deny('Lượt đặt đã tự hủy vì quá 15 phút chưa quét');
   const first=b.status==='booked';
   if(first){b.status='checked_in';b.checkinAt=N;b.openedBy='qr';}
   addAccess({cabin:cabinId,seat:b.seat,code,name:b.rep.name,ok:true,reason:first?'Nhận phòng':'Mở lại',by:'qr'});
@@ -757,7 +791,7 @@ function doScan(cabinId,code){
 function renderMgr(){
   const T=today(),N=now(),q=ui.q.trim().toLowerCase(),day0=at(T,0);
   const match=b=>!q||b.code.toLowerCase().includes(q)||people(b).some(p=>p.includes(q))||b.rep.name.toLowerCase().includes(q);
-  const queue=S.bookings.filter(b=>b.day===T&&b.status==='booked').sort((a,b)=>a.s-b.s||a.cabin.localeCompare(b.cabin));
+  const queue=S.bookings.filter(b=>(q?b.day>=T:b.day===T)&&b.status==='booked').sort((a,b)=>a.s-b.s||a.cabin.localeCompare(b.cabin));
   const active=S.bookings.filter(b=>b.status==='checked_in').sort((a,b)=>sEnd(a.day,a.e-1)-sEnd(b.day,b.e-1));
   const phase=b=>{const left=Math.ceil((sEnd(b.day,b.e-1)-N)/60000);return left<0?'over':left<=10?'clean':'ok';};
   const needs=active.filter(b=>phase(b)!=='ok').length;
@@ -776,7 +810,7 @@ function renderMgr(){
         <label class="check"><input type="checkbox" id="ro-ok-${b.id}" data-act="ro-ok" ${ui.ro.ok?'checked':''}><span>Đã đối chiếu người đại diện ${esc(b.rep.name)} · <span class="mono">${b.rep.mssv}</span></span></label>
         <div class="acts"><button class="go" data-act="do-remote" data-id="${b.id}">Mở cửa ${esc(cab(b.cabin).name)}</button><button data-act="ro-close">Đóng</button></div></div>`;
     }
-    return `<article class="item"><div class="item-top"><h3>${esc(cabinLabel(b))}</h3><span class="when">${timeRange(b.s,b.e)}</span></div>
+    return `<article class="item"><div class="item-top"><h3>${esc(cabinLabel(b))}</h3><span class="when">${b.day===T?'':dayLabel(b.day)+' · '}${timeRange(b.s,b.e)}</span></div>
       <div class="meta"><span>Mã <b class="mono">${b.code}</b></span><span><b>${esc(b.rep.name)}</b> · <span class="mono">${b.rep.mssv}</span></span>${g?`<span>${b.members.length+1} người</span>`:''}<span>${b.channel==='offline'?'Đăng ký hộ':'Online'}</span></div>
       ${due}${ro||`<div class="acts"><button data-act="ro-open" data-id="${b.id}" ${canOpen?'':'disabled'}>Mở cửa từ xa</button>${canOpen?'':`<span class="note">Dùng được từ ${hm(open)}</span>`}</div>`}</article>`;
   }).join(''):`<div class="empty">${q?'Không tìm thấy lượt đặt phù hợp.':'Không còn lượt nào chờ quét QR hôm nay.'}</div>`;
@@ -885,6 +919,7 @@ function submitBooking(){
   for(const p of all){
     const x=personConflicts(p,s.day,s.s,s.e);
     if(x)return fail('MSSV '+p+' đã có lượt đặt trùng giờ ('+cabinLabel(x)+', '+timeRange(x.s,x.e)+').');
+    if(chainHours(p,s.day,s.s,s.e)>MAX_H)return fail('MSSV '+p+' đã có lượt liền kề: tổng cộng sẽ quá '+MAX_H+' tiếng liên tiếp.');
     if(c.group&&weekGroupCount(p,s.day)>=WEEK_LIMIT)return fail('MSSV '+p+' đã dùng hết '+WEEK_LIMIT+' lượt cabin nhóm trong tuần này.');
   }
   const N=now(),inNow=mgr&&d.now&&N>=sStart(s.day,s.s)-OPEN_EARLY_MIN*60000;
@@ -948,6 +983,7 @@ document.addEventListener('click',e=>{
     case 'do-remote':{
       const b=find(id);if(!b||b.status!=='booked'||!ui.ro||ui.ro.id!==id){ui.ro=null;renderMgr();return;}
       if(!ui.ro.ok){toast('Đánh dấu đã đối chiếu người đại diện trước khi mở cửa.',true);return;}
+      if(b.day!==today()||now()<openFrom(b)||now()>=sEnd(b.day,b.e-1)){toast('Chưa đến giờ mở cửa cho lượt này (mở từ '+hm(openFrom(b))+').',true);ui.ro=null;renderMgr();return;}
       ui.ro=null;
       mutate(()=>{b.status='checked_in';b.checkinAt=now();b.openedBy='remote';addAccess({cabin:b.cabin,seat:b.seat,code:b.code,name:b.rep.name,ok:true,reason:'Nhận phòng',by:'remote'});
         log(`${cabinLabel(b)}: quản lý nhà D mở cửa từ xa cho ${b.rep.name} sau khi đối chiếu MSSV.`);toast('Đã mở cửa từ xa · '+b.code);});
@@ -959,7 +995,7 @@ document.addEventListener('click',e=>{
       if(!t.classList.contains('armed')){t.classList.add('armed');t.textContent='Bấm lần nữa để khôi phục';setTimeout(()=>{t.classList.remove('armed');t.textContent='Làm mới demo';},3000);break;}
       t.classList.remove('armed');t.textContent='Làm mới demo';
       clock=defaultClock();saveClock();S=seed();save();
-      Object.assign(ui,{sel:null,done:null,ro:null,q:'',day:null,qrOpen:{},scanRes:{},scanDraft:{}});render();toast('Đã khôi phục dữ liệu mẫu · '+hm(now()));break;
+      Object.assign(ui,{sel:null,done:null,ro:null,q:'',day:null,qrOpen:{},scanRes:{},scanDraft:{},draft:{mssv:'',name:'',members:[''],seat:null,now:true}});render();toast('Đã khôi phục dữ liệu mẫu · '+hm(now()));break;
   }
 });
 document.addEventListener('change',e=>{
@@ -974,7 +1010,15 @@ document.addEventListener('input',e=>{
   else if(t.id==='mgr-q'){ui.q=t.value;renderMgr();}
   else if(t.id&&t.id.indexOf('scan-')===0){ui.scanDraft[t.id.slice(5)]=t.value;}
 });
-document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='my-mssv'){ui.myMssv=e.target.value.trim();savePref();renderMy();}});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&e.target.id==='my-mssv'){ui.myMssv=e.target.value.trim();savePref();renderMy();return;}
+  if(e.target.getAttribute&&e.target.getAttribute('role')==='tab'&&['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){
+    e.preventDefault();
+    const tabs=[...document.querySelectorAll('#tabs [role=tab]')],i=tabs.indexOf(e.target);
+    const j=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
+    ui.tab=tabs[j].dataset.tab;ui.done=null;render();$('#tab-'+ui.tab).focus();
+  }
+});
 document.addEventListener('submit',e=>{
   if(e.target.id==='bk-form'){e.preventDefault();submitBooking();}
   else if(e.target.matches&&e.target.matches('form.scan')){e.preventDefault();const c=e.target.dataset.cabin;const inp=e.target.querySelector('input');doScan(c,inp?inp.value:'');}
@@ -998,6 +1042,7 @@ function tick(force){
 /* ================= boot ================= */
 clock=loadClock();S=load();
 if(!clock||!S){clock=clock||defaultClock();saveClock();S=seed();save();}
+if(autoCancel())save();
 if(ui.role==='manager'&&location.hash==='#sinhvien')ui.role='student';
 if(location.hash==='#bantruc'||location.hash==='#quanly')ui.role='manager';
 render();

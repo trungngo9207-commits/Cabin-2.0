@@ -17,7 +17,8 @@ Cả hai chức năng đều có nút **Toàn màn hình**. Thoát bằng phím 
 ### Quy định đặt chỗ (mô phỏng trong app)
 
 - Mở cửa 08:00–20:00, thứ Hai đến thứ Sáu. Từ 08:00 đến 17:00 mỗi ca 1 tiếng; ca cuối là một khối 3 tiếng liền 17:00–20:00.
-- Tối đa 4 tiếng liên tiếp cho một lượt đặt; cabin nhóm tối đa 2 lượt/tuần mỗi người.
+- Tối đa 4 tiếng liên tiếp cho mỗi người, tính cả các lượt đặt nối tiếp nhau; cabin nhóm tối đa 2 lượt/tuần mỗi người.
+- Sinh viên không đặt được ca đã bắt đầu quá 15 phút (quản lý nhà D vẫn đăng ký hộ được).
 - Cabin 1, 2 cho nhóm, mỗi cabin 9 chỗ (MSSV người đại diện + 1 đến 8 thành viên); Cabin 3 có 7 ghế cá nhân.
 - Quét QR ở cửa từ 5 phút trước giờ bắt đầu; quá 15 phút chưa quét thì lượt đặt tự hủy.
 
@@ -107,7 +108,9 @@ src/
 - Hằng số của app đặt chỗ (`SLOTS`, `CABINS`, `SEATS`, `MAX_H`, `LATE_MIN`, `WEEK_LIMIT`...) nằm đầu phần `<script>` của `dang-ky-cabin.html`.
 - Thẻ `<html>` của cả hai file có `lang="vi" data-theme="light"` (luôn nền sáng cho hợp FTU Gate), và `<head>` có `<meta name="robots" content="noindex, nofollow">`. Nếu thay bằng bản mới, nhớ giữ lại.
 - Sức chứa phải khớp giữa hai file: cabin nhóm 9 chỗ (`GROUP_SEATS` trong app đặt chỗ, `seats:9` trong mô hình 3D), Cabin 3 có 7 ghế (`SEATS`).
-- Dữ liệu đặt chỗ chỉ lưu trong trình duyệt của mỗi người (localStorage). Bấm **"Làm mới demo"** trong app để về dữ liệu mẫu.
+- Dữ liệu đặt chỗ chỉ lưu trong trình duyệt của mỗi người (localStorage). Bấm **"Làm mới demo"** trong app để về dữ liệu mẫu. Tên và MSSV mẫu đều là giả (MSSV dạng `99xxxxxxxx`).
+- Thư viện từ CDN (three.js, qrcodejs) được khóa bằng mã kiểm tra `integrity`. Nếu đổi phiên bản, cần tính lại mã này.
+- `next.config.ts` đặt Content-Security-Policy và các header bảo mật. Nếu thêm thư viện từ một CDN khác, cần thêm tên miền đó vào CSP.
 
 **Thêm mục menu:** sửa `src/components/sites/ftugate/nav.ts`.
 

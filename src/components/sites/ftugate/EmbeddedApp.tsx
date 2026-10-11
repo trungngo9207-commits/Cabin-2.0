@@ -48,7 +48,9 @@ export function EmbeddedApp({ title, src }: { title: string; src: string }) {
         <iframe
           src={src}
           title={title}
-          allowFullScreen
+          // Same-origin apps need allow-same-origin for localStorage; the sandbox still blocks
+          // top-level navigation, popups and downloads from inside the frame.
+          sandbox="allow-scripts allow-same-origin allow-forms"
           className="size-full rounded-[9.6px] border border-ftu"
         />
         {isFull ? (
