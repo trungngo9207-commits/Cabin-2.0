@@ -1,5 +1,5 @@
 <!doctype html><html lang="vi" data-theme="light"><head><meta charset=utf8><meta name="robots" content="noindex, nofollow"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Cabin Tòa D</title>
+<title>Container Tòa D</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
@@ -312,7 +312,8 @@ form.scan button{border:0;background:var(--accent);color:var(--accent-ink);borde
   table.grid{border-spacing:4px}
   .grid th.tcol{width:52px}
   .plate{padding:7px 7px 6px}
-  .plate-no{font-size:15px}
+  .plate-no{font-size:17px;line-height:1.05}
+  .plate-word{display:block;font-size:10.5px;letter-spacing:.06em}
   .plate-sub{font-size:10.5px}
   .cell{padding:6px 7px;font-size:12px;min-height:50px}
   .cell small{display:none}
@@ -328,7 +329,7 @@ form.scan button{border:0;background:var(--accent);color:var(--accent-ink);borde
   <div class="top-in">
     <div class="brand">
       <span class="brand-mark">TÒA D</span>
-      <div><h1>Cabin Tòa D</h1><small>Đặt chỗ cabin container · FTU · Demo nhóm 3 KAIZENZ</small></div>
+      <div><h1>Container Tòa D</h1><small>Đặt chỗ container · FTU · Demo nhóm 3 KAIZENZ</small></div>
     </div>
     <div class="seg" role="group" aria-label="Vai trò">
       <button id="role-student" data-act="role" data-role="student" aria-pressed="true">Sinh viên</button>
@@ -358,9 +359,9 @@ form.scan button{border:0;background:var(--accent);color:var(--accent-ink);borde
 /* ================= constants (theo Quy định đăng ký của nhóm) ================= */
 const SLOTS=[[8,9],[9,10],[10,11],[11,12],[12,13],[13,14],[14,15],[15,16],[16,17],[17,20]]; // ca cuối 17–20 là block 3 tiếng
 const CABINS=[
-  {id:'C1',no:'01',name:'Cabin 1',sub:'Nhóm A',group:true},
-  {id:'C2',no:'02',name:'Cabin 2',sub:'Nhóm B',group:true},
-  {id:'C3',no:'03',name:'Cabin 3',sub:'Cá nhân · 7 ghế',group:false}
+  {id:'C1',no:'01',name:'Container 1',sub:'Nhóm A',group:true},
+  {id:'C2',no:'02',name:'Container 2',sub:'Nhóm B',group:true},
+  {id:'C3',no:'03',name:'Container 3',sub:'Cá nhân · 7 ghế',group:false}
 ];
 const SEATS=7, GROUP_SEATS=9, MAX_H=4, LATE_MIN=15, WEEK_LIMIT=2, CHECKIN_EARLY_MIN=30, OPEN_EARLY_MIN=5;
 const KEY='kaizenz-cabin-v2', CLOCK_KEY='kaizenz-cabin-clock-v1', PREF_KEY='kaizenz-cabin-pref-v1';
@@ -386,7 +387,7 @@ const dayLabel=k=>{const d=parseDk(k);return DOW_FULL[d.getDay()]+' '+pad(d.getD
 const hours=(s,e)=>SLOTS[e-1][1]-SLOTS[s][0];
 const timeRange=(s,e)=>pad(SLOTS[s][0])+':00–'+pad(SLOTS[e-1][1])+':00';
 const cab=id=>CABINS.find(c=>c.id===id);
-const cabinLabel=b=>b.cabin==='C3'?'Cabin 3 · Ghế '+b.seat:cab(b.cabin).name+' · '+cab(b.cabin).sub;
+const cabinLabel=b=>b.cabin==='C3'?'Container 3 · Ghế '+b.seat:cab(b.cabin).name+' · '+cab(b.cabin).sub;
 const people=b=>[b.rep.mssv].concat(b.members||[]);
 const isActive=b=>b.status==='booked'||b.status==='checked_in';
 const deadline=b=>Math.max(sStart(b.day,b.s),b.createdAt)+LATE_MIN*60000;
@@ -443,13 +444,13 @@ function seed(){
   const access=[A(at(D,8,57),a9,true,'Nhận phòng'),A(at(D,8,41),a2,false,'Chưa đến giờ · mở từ 08:55'),A(at(D,8,1),a10,true,'Nhận phòng'),
     A(at(D,7,59),a7,true,'Nhận phòng'),A(at(D,7,58),a1,true,'Nhận phòng'),A(at(D,7,56),a3,true,'Nhận phòng')];
   const log=[
-    {t:at(D,8,57),text:'Cabin 3 · Ghế 3: Ngô Thu Trang quét QR, cửa mở, nhận phòng tự động.'},
-    {t:at(D,8,55),text:'Cabin 3 · Ghế 4: Mai Anh Thư trả phòng sớm, mã hết hiệu lực.'},
-    {t:at(D,8,52),text:'Cabin 1 · Nhóm A: nhóm Nguyễn Minh Anh trả phòng sớm, cửa tự khóa.'},
-    {t:at(D,8,41),text:'Cabin 1: khóa từ chối mã của Trần Gia Huy vì chưa đến giờ (mở từ 08:55).'},
-    {t:at(D,7,59),text:'Cabin 3 · Ghế 1: Hoàng Ngọc Hà quét QR, cửa mở, nhận phòng tự động.'},
-    {t:at(D,7,56),text:'Cabin 2 · Nhóm B: nhóm Lê Thảo Vy quét QR, cửa mở, nhận phòng tự động.'},
-    {t:at(D,7,45),text:'Quản lý nhà D mở ca. Lao công đã vệ sinh đầu ngày cả 3 cabin.'}
+    {t:at(D,8,57),text:'Container 3 · Ghế 3: Ngô Thu Trang quét QR, cửa mở, nhận phòng tự động.'},
+    {t:at(D,8,55),text:'Container 3 · Ghế 4: Mai Anh Thư trả phòng sớm, mã hết hiệu lực.'},
+    {t:at(D,8,52),text:'Container 1 · Nhóm A: nhóm Nguyễn Minh Anh trả phòng sớm, cửa tự khóa.'},
+    {t:at(D,8,41),text:'Container 1: khóa từ chối mã của Trần Gia Huy vì chưa đến giờ (mở từ 08:55).'},
+    {t:at(D,7,59),text:'Container 3 · Ghế 1: Hoàng Ngọc Hà quét QR, cửa mở, nhận phòng tự động.'},
+    {t:at(D,7,56),text:'Container 2 · Nhóm B: nhóm Lê Thảo Vy quét QR, cửa mở, nhận phòng tự động.'},
+    {t:at(D,7,45),text:'Quản lý nhà D mở ca. Lao công đã vệ sinh đầu ngày cả 3 container.'}
   ];
   return {v:2,bookings:list,log,access};
 }
@@ -540,8 +541,8 @@ const pref=lsGet(PREF_KEY)||{};
 const ui={role:pref.role==='manager'?'manager':'student',tab:null,day:null,sel:null,done:null,
   draft:{mssv:'',name:'',members:[''],seat:null,now:true},myMssv:pref.my||'',q:'',ro:null,qrOpen:{},scanRes:{},scanDraft:{}};
 function savePref(){lsSet(PREF_KEY,{role:ui.role,my:ui.myMssv});}
-const TABS={student:[['lich','Lịch trống & đặt chỗ'],['cua-toi','Lượt đặt của tôi'],['cua','Cửa cabin (mô phỏng)'],['quy-dinh','Quy định']],
-  manager:[['dieu-phoi','Điều phối'],['lich','Lịch & đăng ký hộ'],['cua','Cửa cabin (mô phỏng)'],['quy-dinh','Quy định']]};
+const TABS={student:[['lich','Lịch trống & đặt chỗ'],['cua-toi','Lượt đặt của tôi'],['cua','Cửa container (mô phỏng)'],['quy-dinh','Quy định']],
+  manager:[['dieu-phoi','Điều phối'],['lich','Lịch & đăng ký hộ'],['cua','Cửa container (mô phỏng)'],['quy-dinh','Quy định']]};
 
 let toastT;
 function toast(msg,bad){const t=$('#toast');t.textContent=msg;t.className='toast'+(bad?' bad':'');t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>{t.hidden=true;},3200);}
@@ -556,8 +557,8 @@ function render(){
   $('#view').setAttribute('aria-labelledby','tab-'+ui.tab);
   const v=$('#view');
   if(ui.tab==='lich'){
-    v.innerHTML=`<div class="layout"><section aria-label="Lịch cabin"><div class="days" id="days"></div><div class="grid-wrap" id="grid"></div>
-      <div class="legend"><span><i style="background:var(--free-bg);border:1px solid var(--free)"></i>Trống / Trống cả phòng</span><span><i style="background:var(--busy-bg);border:1px solid var(--busy)"></i>Đã book</span><span><i style="background:repeating-linear-gradient(135deg,var(--busy-bg) 0 3px,var(--use-bg) 3px 6px);border:1px solid var(--busy)"></i>Đang sử dụng</span><span><i style="background:var(--part-bg);border:1px solid var(--part)"></i>Còn X/7 ghế (Cabin 3)</span><span><i style="background:var(--sel)"></i>Bạn đang chọn</span></div>
+    v.innerHTML=`<div class="layout"><section aria-label="Lịch container"><div class="days" id="days"></div><div class="grid-wrap" id="grid"></div>
+      <div class="legend"><span><i style="background:var(--free-bg);border:1px solid var(--free)"></i>Trống / Trống cả phòng</span><span><i style="background:var(--busy-bg);border:1px solid var(--busy)"></i>Đã book</span><span><i style="background:repeating-linear-gradient(135deg,var(--busy-bg) 0 3px,var(--use-bg) 3px 6px);border:1px solid var(--busy)"></i>Đang sử dụng</span><span><i style="background:var(--part-bg);border:1px solid var(--part)"></i>Còn X/7 ghế (Container 3)</span><span><i style="background:var(--sel)"></i>Bạn đang chọn</span></div>
       <p class="hint-line">Bấm 1 ô để chọn, bấm ô liền kề để nối thêm (tối đa 4 tiếng). Ca 17:00–20:00 là block 3 tiếng.</p></section>
       <aside class="panel" id="panel" aria-live="polite"></aside></div>`;
     renderPanel();
@@ -572,11 +573,11 @@ function render(){
           <input type="search" class="search" id="mgr-q" placeholder="Tìm theo MSSV, tên hoặc mã đặt chỗ" value="${esc(ui.q)}" aria-label="Tìm lượt đặt"><div class="list" id="queue"></div></section>
         <section><div class="sec-h"><h2>Đang sử dụng · theo dõi giờ</h2><span>Nhắc khi còn 10 phút</span></div><div class="list" id="active"></div></section>
       </div>
-      <section class="block"><div class="sec-h"><h2>Trạng thái cửa</h2><span>Khóa QR ở 3 cabin</span></div><div class="dstat" id="dstat"></div></section>
+      <section class="block"><div class="sec-h"><h2>Trạng thái cửa</h2><span>Khóa QR ở 3 container</span></div><div class="dstat" id="dstat"></div></section>
       <section class="block"><div class="sec-h"><h2>Nhật ký ra vào</h2><span>Ghi cả lần mở được và lần bị từ chối</span></div><ul class="log alog" id="alog"></ul></section>
       <section class="block"><div class="sec-h"><h2>Nhật ký hoạt động</h2></div><ul class="log" id="log"></ul></section>`;
   }else if(ui.tab==='cua'){
-    v.innerHTML=`<section><p class="intro">Mỗi cabin có một khóa QR ở cửa. Nhập mã đặt chỗ hoặc bấm vào một mã bên dưới để mô phỏng thao tác quét. Khóa chỉ mở với mã đúng cabin, đúng ngày và trong khung giờ đã đặt (từ 5 phút trước giờ bắt đầu). Mọi lần quét đều được ghi lại.</p>
+    v.innerHTML=`<section><p class="intro">Mỗi container có một khóa QR ở cửa. Nhập mã đặt chỗ hoặc bấm vào một mã bên dưới để mô phỏng thao tác quét. Khóa chỉ mở với mã đúng container, đúng ngày và trong khung giờ đã đặt (từ 5 phút trước giờ bắt đầu). Mọi lần quét đều được ghi lại.</p>
       <div class="doors" id="doors"></div>
       <section class="block"><div class="sec-h"><h2>Nhật ký ra vào</h2><span>Ghi cả lần mở được và lần bị từ chối</span></div><ul class="log alog" id="alog"></ul></section></section>`;
   }else{
@@ -605,7 +606,7 @@ function renderDays(){
 function renderGrid(){
   const day=ui.day,N=now(),mgr=ui.role==='manager',sel=ui.sel&&ui.sel.day===day?ui.sel:null;
   const weekend=!isWk(parseDk(day));
-  let h=`<table class="grid"><thead><tr><th class="tcol">Khung giờ</th>${CABINS.map(c=>`<th scope="col"><div class="plate"><span class="plate-no">CABIN ${c.no}</span><span class="plate-sub">${c.sub}</span></div></th>`).join('')}</tr></thead><tbody>`;
+  let h=`<table class="grid"><thead><tr><th class="tcol">Khung giờ</th>${CABINS.map(c=>`<th scope="col"><div class="plate"><span class="plate-no"><span class="plate-word">CONTAINER</span> ${c.no}</span><span class="plate-sub">${c.sub}</span></div></th>`).join('')}</tr></thead><tbody>`;
   SLOTS.forEach((sl,i)=>{
     const isNow=sStart(day,i)<=N&&N<sEnd(day,i);
     h+=`<tr class="${isNow?'now':''}"><th scope="row" class="tcell">${pad(sl[0])}:00<span class="t2">${pad(sl[1])}:00</span>${isNow?'<span class="nowtag">Bây giờ</span>':''}</th>`;
@@ -635,11 +636,11 @@ function renderPanel(){
   const mgr=ui.role==='manager';
   if(ui.done){const b=find(ui.done);if(b){host.innerHTML=ticketHTML(b,mgr);drawQRs(host);return;}ui.done=null;}
   if(!ui.sel){
-    host.innerHTML=`<div class="eyebrow">${mgr?'Đăng ký hộ sinh viên':'Đặt chỗ online'}</div><h2>${mgr?'Chọn khung giờ cho sinh viên cần đăng ký hộ':'Chọn cabin và khung giờ'}</h2>
-      <ol class="steps"><li><span><b>Chọn khung giờ</b>1–4 ô liền nhau trong cùng một cabin trên lịch.</span></li>
-      <li><span><b>Điền MSSV</b>Học nhóm cần MSSV người đại diện + ít nhất 1 thành viên. Cabin 3 chọn 1 trong 7 ghế.</span></li>
-      <li><span><b>Quét QR ở cửa</b>Người đại diện nhận mã QR, quét vào khóa cửa cabin từ 5 phút trước giờ. Không cần qua bàn trực, không gửi thẻ SV.</span></li></ol>
-      <div class="rule-chips"><span>08:00–20:00 · T2–T6</span><span>Block 1 tiếng</span><span>Tối đa 4 tiếng/lượt</span><span>Cabin nhóm: 2 lượt/tuần</span><span>Mở cửa bằng QR</span><span>Tự hủy sau 15′ nếu chưa quét</span></div>`;
+    host.innerHTML=`<div class="eyebrow">${mgr?'Đăng ký hộ sinh viên':'Đặt chỗ online'}</div><h2>${mgr?'Chọn khung giờ cho sinh viên cần đăng ký hộ':'Chọn container và khung giờ'}</h2>
+      <ol class="steps"><li><span><b>Chọn khung giờ</b>1–4 ô liền nhau trong cùng một container trên lịch.</span></li>
+      <li><span><b>Điền MSSV</b>Học nhóm cần MSSV người đại diện + ít nhất 1 thành viên. Container 3 chọn 1 trong 7 ghế.</span></li>
+      <li><span><b>Quét QR ở cửa</b>Người đại diện nhận mã QR, quét vào khóa cửa container từ 5 phút trước giờ. Không cần qua bàn trực, không gửi thẻ SV.</span></li></ol>
+      <div class="rule-chips"><span>08:00–20:00 · T2–T6</span><span>Block 1 tiếng</span><span>Tối đa 4 tiếng/lượt</span><span>Container nhóm: 2 lượt/tuần</span><span>Mở cửa bằng QR</span><span>Tự hủy sau 15′ nếu chưa quét</span></div>`;
     return;
   }
   const s=ui.sel,c=cab(s.cabin),d=ui.draft;
@@ -693,7 +694,7 @@ function renderMy(){
   const up=mine.filter(isActive).sort((a,b)=>(a.day+pad(a.s)).localeCompare(b.day+pad(b.s)));
   const past=mine.filter(b=>!isActive(b)).sort((a,b)=>(b.day+pad(b.s)).localeCompare(a.day+pad(a.s)));
   const used=weekGroupCount(m,T);
-  let h=`<div class="quota"><span class="pips">${Array.from({length:WEEK_LIMIT},(_,i)=>`<i class="${i<used?'on':''}"></i>`).join('')}</span><span>Cabin nhóm tuần này: <b>${Math.min(used,WEEK_LIMIT)}/${WEEK_LIMIT}</b> lượt</span></div>`;
+  let h=`<div class="quota"><span class="pips">${Array.from({length:WEEK_LIMIT},(_,i)=>`<i class="${i<used?'on':''}"></i>`).join('')}</span><span>Container nhóm tuần này: <b>${Math.min(used,WEEK_LIMIT)}/${WEEK_LIMIT}</b> lượt</span></div>`;
   if(!mine.length){host.innerHTML=h+'<div class="empty">Chưa có lượt đặt nào cho MSSV <span class="mono">'+esc(m)+'</span>.</div>';return;}
   const item=b=>{
     const g=cab(b.cabin).group,rep=b.rep.mssv===m;let acts='',note='';
@@ -751,7 +752,7 @@ function renderDoors(){
     const d=doorState(c),r=ui.scanRes[c.id],fresh=r&&N-r.t<10*60000;
     const codes=S.bookings.filter(b=>b.day===T&&b.cabin===c.id&&isActive(b)).sort((a,b)=>a.s-b.s||(a.seat||0)-(b.seat||0)).slice(0,5);
     return `<article class="door" aria-label="Khóa cửa ${c.name}">
-      <div class="door-top"><div><span class="door-no">CABIN ${c.no}</span><small>${c.sub}</small></div></div>
+      <div class="door-top"><div><span class="door-no">CONTAINER ${c.no}</span><small>${c.sub}</small></div></div>
       <div class="screen" aria-live="polite"><div class="st"><span class="led ${d.led}"></span>${d.head}</div><p>${esc(d.text)}</p><p class="dim">${esc(d.next)}</p>
         ${fresh?`<div class="res ${r.ok?'ok':'no'}"><b>${r.ok?'✓':'✗'} ${r.title}</b><span>${esc(r.detail)}</span></div>`:''}</div>
       <form class="scan" data-cabin="${c.id}" novalidate><input type="text" id="scan-${c.id}" autocomplete="off" placeholder="Nhập mã, VD: KZ-AB12" value="${esc(ui.scanDraft[c.id]||'')}" aria-label="Mã đặt chỗ để quét ở ${c.name}"><button type="submit">Quét</button></form>
@@ -827,7 +828,7 @@ function renderMgr(){
       <div class="meta"><span><b>${esc(b.rep.name)}</b></span><span>Mở cửa ${hm(b.checkinAt)} · ${b.openedBy==='remote'?'từ xa':'bằng QR'}</span></div>
       <div class="acts"><button data-act="extend" data-id="${b.id}" ${er?'disabled title="'+esc(er)+'"':''}>Gia hạn +1 ca</button><button data-act="remind" data-id="${b.id}">Nhắc nhở</button><button class="go" data-act="checkout" data-id="${b.id}">Kết thúc lượt</button></div>
       ${er&&p!=='ok'?`<p class="note">Không gia hạn được: ${er}</p>`:''}</article>`;
-  }).join(''):`<div class="empty">${q?'Không có cabin đang dùng khớp tìm kiếm.':'Chưa có cabin nào đang sử dụng.'}</div>`;
+  }).join(''):`<div class="empty">${q?'Không có container đang dùng khớp tìm kiếm.':'Chưa có container nào đang sử dụng.'}</div>`;
 
   $('#dstat').innerHTML=CABINS.map(c=>{const d=doorState(c);return `<div class="dcard"><div class="row"><span class="led ${d.led}"></span>${c.name} · ${d.head.toLowerCase()}</div><div>${esc(d.text)}</div><div class="note">${esc(d.last)}</div><div class="note">${esc(d.next)}</div></div>`;}).join('');
   renderAlog();
@@ -838,24 +839,24 @@ function renderMgr(){
 function rulesHTML(){
   return `<div class="rules">
   <section class="rcard"><h2>Tổng quan</h2><table><tbody>
-    <tr><td>Số lượng cabin</td><td>3 cabin: Cabin 1 (Nhóm A) và Cabin 2 (Nhóm B) học/họp nhóm; Cabin 3 học cá nhân, 7 ghế</td></tr>
+    <tr><td>Số lượng container</td><td>3 cabin: Container 1 (Nhóm A) và Container 2 (Nhóm B) học/họp nhóm; Container 3 học cá nhân, 7 ghế</td></tr>
     <tr><td>Thời gian hoạt động</td><td>08:00–20:00, Thứ Hai đến Thứ Sáu</td></tr>
     <tr><td>Đơn vị đặt chỗ</td><td>Block 1 tiếng; riêng ca cuối 17:00–20:00 là block 3 tiếng</td></tr>
     <tr><td>Thời lượng</td><td>Tối thiểu 1 block, tối đa 4 tiếng liên tiếp mỗi lượt</td></tr>
-    <tr><td>Cabin nhóm</td><td>Tối thiểu 2 người; mỗi sinh viên tối đa 2 lượt/tuần (tính cả khi là thành viên)</td></tr>
+    <tr><td>Container nhóm</td><td>Tối thiểu 2 người; mỗi sinh viên tối đa 2 lượt/tuần (tính cả khi là thành viên)</td></tr>
     <tr><td>Hình thức đăng ký</td><td>Online trên hệ thống này, hoặc nhờ quản lý nhà D đăng ký hộ. Bắt buộc đăng ký trước khi dùng</td></tr>
-    <tr><td>Mở cửa</td><td>Khóa QR ở mỗi cabin. Mã gửi cho người đại diện ngay khi đặt xong; không còn gửi thẻ SV hay nhận biển RESERVED</td></tr>
+    <tr><td>Mở cửa</td><td>Khóa QR ở mỗi container. Mã gửi cho người đại diện ngay khi đặt xong; không còn gửi thẻ SV hay nhận biển RESERVED</td></tr>
     <tr><td>Người quản lý</td><td>Quản lý nhà D kiêm nhiệm, theo dõi qua màn hình Điều phối</td></tr>
   </tbody></table></section>
   <section class="rcard"><h2>Kiểm soát ra vào</h2><ul>
-    <li>Khóa chỉ mở với mã còn hiệu lực, đúng cabin, đúng ngày và trong khung giờ đã đặt (từ 5 phút trước giờ bắt đầu).</li>
+    <li>Khóa chỉ mở với mã còn hiệu lực, đúng container, đúng ngày và trong khung giờ đã đặt (từ 5 phút trước giờ bắt đầu).</li>
     <li>Lần quét đầu tiên được tính là nhận phòng. Trong giờ đã đặt, người đại diện quét lại để ra vào.</li>
     <li>Mã hết hiệu lực khi lượt kết thúc, bị hủy hoặc tự hủy. Cửa tự khóa khi đóng.</li>
     <li>Mọi lần quét, kể cả lần bị từ chối, đều được ghi vào Nhật ký ra vào kèm giờ, mã và người đặt.</li>
   </ul></section>
   <section class="rcard wide"><h2>Quy trình 3 bước</h2><div class="flow">
-    <div><b>Bước 1</b><h3>Đặt chỗ</h3><p>Chọn 1–4 ô liền kề. Điền MSSV người đại diện, cabin nhóm thêm ít nhất 1 MSSV thành viên. Người đại diện nhận ngay mã QR mở cửa.</p></div>
-    <div><b>Bước 2</b><h3>Quét QR ở cửa</h3><p>Từ 5 phút trước giờ bắt đầu, người đại diện quét mã vào khóa cửa cabin. Cửa mở và hệ thống tự ghi nhận phòng. Quá 15 phút chưa quét, lượt tự hủy.</p></div>
+    <div><b>Bước 1</b><h3>Đặt chỗ</h3><p>Chọn 1–4 ô liền kề. Điền MSSV người đại diện, container nhóm thêm ít nhất 1 MSSV thành viên. Người đại diện nhận ngay mã QR mở cửa.</p></div>
+    <div><b>Bước 2</b><h3>Quét QR ở cửa</h3><p>Từ 5 phút trước giờ bắt đầu, người đại diện quét mã vào khóa cửa container. Cửa mở và hệ thống tự ghi nhận phòng. Quá 15 phút chưa quét, lượt tự hủy.</p></div>
     <div><b>Bước 3</b><h3>Rời đi</h3><p>10 phút cuối dọn dẹp, trả bàn ghế về vị trí, đóng cửa. Cửa tự khóa, mã hết hiệu lực khi hết giờ. Xong sớm thì bấm Trả phòng sớm để nhường giờ còn lại.</p></div>
   </div></section>
   <section class="rcard"><h2>Hủy slot & gia hạn</h2><ul>
@@ -872,7 +873,7 @@ function rulesHTML(){
   </ul></section>
   <section class="rcard"><h2>Vệ sinh</h2><ul>
     <li>Sinh viên tự dọn dẹp trong 10 phút cuối ca; lao công dọn đầu ngày và cuối ngày.</li>
-    <li>Nhật ký ra vào cho biết nhóm nào dùng cabin trước khi phát hiện bừa bộn hoặc hư hỏng.</li>
+    <li>Nhật ký ra vào cho biết nhóm nào dùng container trước khi phát hiện bừa bộn hoặc hư hỏng.</li>
   </ul></section>
   </div>`;
 }
@@ -911,7 +912,7 @@ function submitBooking(){
     const bad=members.find(x=>!re.test(x));if(bad)return fail('MSSV thành viên "'+bad+'" không hợp lệ.');
     if(members.includes(mssv))return fail('MSSV thành viên trùng với người đại diện.');
     if(new Set(members).size!==members.length)return fail('Có MSSV thành viên bị trùng.');
-    if(members.length>GROUP_SEATS-1)return fail('Cabin nhóm có '+GROUP_SEATS+' chỗ: tối đa 1 đại diện + '+(GROUP_SEATS-1)+' thành viên.');
+    if(members.length>GROUP_SEATS-1)return fail('Container nhóm có '+GROUP_SEATS+' chỗ: tối đa 1 đại diện + '+(GROUP_SEATS-1)+' thành viên.');
   }
   const er=rangeError(s.day,s.cabin,s.s,s.e);if(er)return fail(er);
   if(!c.group&&!freeSeatsRange(s.day,s.s,s.e).includes(d.seat))return fail('Chọn một ghế còn trống.');
@@ -920,7 +921,7 @@ function submitBooking(){
     const x=personConflicts(p,s.day,s.s,s.e);
     if(x)return fail('MSSV '+p+' đã có lượt đặt trùng giờ ('+cabinLabel(x)+', '+timeRange(x.s,x.e)+').');
     if(chainHours(p,s.day,s.s,s.e)>MAX_H)return fail('MSSV '+p+' đã có lượt liền kề: tổng cộng sẽ quá '+MAX_H+' tiếng liên tiếp.');
-    if(c.group&&weekGroupCount(p,s.day)>=WEEK_LIMIT)return fail('MSSV '+p+' đã dùng hết '+WEEK_LIMIT+' lượt cabin nhóm trong tuần này.');
+    if(c.group&&weekGroupCount(p,s.day)>=WEEK_LIMIT)return fail('MSSV '+p+' đã dùng hết '+WEEK_LIMIT+' lượt container nhóm trong tuần này.');
   }
   const N=now(),inNow=mgr&&d.now&&N>=sStart(s.day,s.s)-OPEN_EARLY_MIN*60000;
   const b={id:'b'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),code:newCode(S.bookings),day:s.day,cabin:s.cabin,seat:c.group?null:d.seat,s:s.s,e:s.e,

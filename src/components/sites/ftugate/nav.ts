@@ -41,7 +41,7 @@ export const sideNav: SideItem[] = [
   { label: "Khảo sát đánh giá" },
   { label: "Cập nhật thông tin lý lịch" },
   { label: "Đăng ký phòng chức năng" },
-  { label: "Đăng ký chỗ ngồi Cabin Tòa D", href: BOOKING_HREF, isNew: true },
-  { label: "Mô hình 3D Cabin Tòa D", href: MODEL_HREF, isNew: true },
+  { label: "Đăng ký chỗ ngồi Container Tòa D", href: BOOKING_HREF, isNew: true },
+  { label: "Mô hình 3D Container Tòa D", href: MODEL_HREF, isNew: true },
   { label: "Đăng ký thực tập/khóa luận tốt nghiệp" },
 ];

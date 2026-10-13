@@ -11,10 +11,10 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: {
-    default: "[DEMO] Cabin Tòa D · KAIZENZ",
-    template: "%s · [DEMO] Cabin Tòa D",
+    default: "[DEMO] Container Tòa D · KAIZENZ",
+    template: "%s · [DEMO] Container Tòa D",
   },
-  description: "Bản demo của nhóm 3 KAIZENZ: chức năng đặt chỗ Cabin Tòa D trong giao diện kiểu FTU Gate. Không phải hệ thống chính thức.",
+  description: "Bản demo của nhóm 3 KAIZENZ: chức năng đặt chỗ Container Tòa D trong giao diện kiểu FTU Gate. Không phải hệ thống chính thức.",
   robots: { index: false, follow: false },
 };
 

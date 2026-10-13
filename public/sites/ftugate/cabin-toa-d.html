@@ -1,10 +1,10 @@
 <!doctype html><html lang="vi" data-theme="light"><head><meta charset=utf8><meta name="robots" content="noindex, nofollow"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Mô hình Cabin Tòa D</title>
+<title>Mô hình Container Tòa D</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Saira+Stencil+One&display=swap">
 <style>
-/* Layout: mô hình 3D phủ kín màn hình. Thanh trên chọn cabin, thanh dưới chọn góc nhìn,
+/* Layout: mô hình 3D phủ kín màn hình. Thanh trên chọn container, thanh dưới chọn góc nhìn,
    bảng bên phải liệt kê hạng mục cải tạo theo mức ưu tiên và cho thử màu vỏ. */
 :root{
   --ground:#E4E6E1; --sky-top:#C9D4D6; --sky-bot:#EDECE6; --pave:#D6D5CE;
@@ -158,7 +158,7 @@ input[type=color]{width:42px;height:32px;border:1px solid var(--line);border-rad
 </style>
 
 <div id="app">
-  <canvas id="scene" aria-label="Mô hình 3D cabin container"></canvas>
+  <canvas id="scene" aria-label="Mô hình 3D container"></canvas>
   <div class="loading" id="loading">Đang dựng mô hình…</div>
   <div id="dims" aria-hidden="true"></div>
   <div id="pins"></div>
@@ -166,9 +166,9 @@ input[type=color]{width:42px;height:32px;border:1px solid var(--line);border-rad
   <header class="bar">
     <div class="brand">
       <span class="mark">TÒA D</span>
-      <div><h1>Mô hình cabin cải tạo</h1><small>Nhóm 3 KAIZENZ · dựng từ bản vẽ mặt bằng</small></div>
+      <div><h1>Mô hình container cải tạo</h1><small>Nhóm 3 KAIZENZ · dựng từ bản vẽ mặt bằng</small></div>
     </div>
-    <div class="tabs" id="tabs" role="group" aria-label="Chọn cabin"></div>
+    <div class="tabs" id="tabs" role="group" aria-label="Chọn container"></div>
   </header>
 
   <aside class="side" id="side" aria-label="Hạng mục cải tạo">
@@ -237,26 +237,26 @@ const INFO={
   power:{t:'Ổ điện chạy dọc sống bàn',b:'Máng điện nằm giữa hai nửa bàn, mỗi chỗ ngồi một ổ trong tầm tay. Trước đây mỗi bàn có 02 ổ đặt dưới gầm, rất khó với tới.',s:[['31.5%','gặp khó vì thiếu hoặc khó dùng ổ điện ở chỗ học hiện tại'],['36.0%','coi ổ điện là tiêu chí của không gian lý tưởng']]},
   power1:{t:'Ổ điện ngay trên từng bàn',b:'Mỗi bàn một cụm ổ đặt sát vách, trên mặt bàn, thay cho ổ dưới gầm bàn trước đây.',s:[['31.5%','gặp khó vì thiếu hoặc khó dùng ổ điện ở chỗ học hiện tại'],['36.0%','coi ổ điện là tiêu chí của không gian lý tưởng']]},
   ac:{t:'Điều hòa, thông gió và wifi riêng',b:'Kiểm tra lại công suất điều hòa, thêm thông gió và một điểm phát wifi riêng cho khu container. Đây là điều kiện để ngồi được trọn một lượt 4 tiếng.',s:[['50.0%','nhóm đã dùng thấy bí bách khi đông người'],['39.3%','coi wifi ổn định là tiêu chí lý tưởng']]},
-  sign:{t:'Số cabin, QR lịch trống, khóa QR ở cửa',b:'Số cabin sơn lớn ngoài vách, trùng tên trên lịch đặt chỗ. QR cạnh cửa mở thẳng lịch trống. Nhóm đã đặt quét mã QR của lượt đặt vào khóa cửa, từ 5 phút trước giờ bắt đầu.',s:[],n:'Khớp quy định đặt chỗ: mở cửa bằng QR, không còn gửi thẻ SV hay nhận biển RESERVED ở bàn trực.'},
-  sign1:{t:'Số cabin và QR lịch trống',b:'Số 03 sơn lớn ở mặt dài, trùng tên trên lịch đặt chỗ. QR cạnh cửa mở thẳng lịch trống. Cabin cá nhân giữ chỗ theo ghế; mỗi lượt đặt có mã QR riêng để mở cửa.',s:[]},
+  sign:{t:'Số container, QR lịch trống, khóa QR ở cửa',b:'Số container sơn lớn ngoài vách, trùng tên trên lịch đặt chỗ. QR cạnh cửa mở thẳng lịch trống. Nhóm đã đặt quét mã QR của lượt đặt vào khóa cửa, từ 5 phút trước giờ bắt đầu.',s:[],n:'Khớp quy định đặt chỗ: mở cửa bằng QR, không còn gửi thẻ SV hay nhận biển RESERVED ở bàn trực.'},
+  sign1:{t:'Số container và QR lịch trống',b:'Số 03 sơn lớn ở mặt dài, trùng tên trên lịch đặt chỗ. QR cạnh cửa mở thẳng lịch trống. Container cá nhân giữ chỗ theo ghế; mỗi lượt đặt có mã QR riêng để mở cửa.',s:[]},
   partition:{t:'Vách ngăn thấp giữa các chỗ',b:'Vách nỉ cao 1,2 m tách từng chỗ ngồi. Ngồi xuống là khuất tầm nhìn người bên cạnh, đứng lên vẫn thấy cả phòng.',s:[['52.8%','chọn yên tĩnh là tiêu chí số 1'],['50.0%','nhóm đã dùng đánh giá sự riêng tư cao nhất']]},
   window:{t:'Cửa sổ dán phim mờ nửa dưới, có rèm cản nhiệt',b:'Giữ nguyên kính để người bên ngoài thấy bên trong sáng và thoáng. Phim mờ nửa dưới che người đang ngồi, rèm cuốn cản nắng giờ trưa.',s:[['39.0%','nhóm chưa dùng ngại không gian nhỏ, bí'],['50.0%','nhóm đã dùng đánh giá sự riêng tư cao nhất']]},
-  acoustic:{t:'Tấm tiêu âm ốp vách',b:'Tấm nỉ tiêu âm ốp mặt trong. Nhóm tranh luận thoải mái mà không làm phiền cabin kế bên, tiếng ồn bên ngoài cũng khó lọt vào.',s:[['37.1%','than tiếng ồn ở chỗ học hiện tại']]},
+  acoustic:{t:'Tấm tiêu âm ốp vách',b:'Tấm nỉ tiêu âm ốp mặt trong. Nhóm tranh luận thoải mái mà không làm phiền container kế bên, tiếng ồn bên ngoài cũng khó lọt vào.',s:[['37.1%','than tiếng ồn ở chỗ học hiện tại']]},
   board:{t:'Bảng trắng',b:'Bảng trắng treo trên vách đặc để chia việc, vẽ sơ đồ, họp CLB.',s:[['30.3%','có nhu cầu họp nhóm, CLB, bonding']]},
   chair:{t:'Ghế có tựa lưng',b:'Thay ghế nhựa bằng ghế có tựa lưng, vì một lượt đặt có thể kéo dài tới 4 tiếng.',s:[['44.9%','coi bàn ghế phù hợp là tiêu chí lý tưởng']]},
-  paint:{t:'Vỏ sơn nền sáng, màu nhấn ở viền',b:'Nền sáng phản nhiệt và thoát khỏi bảng màu container hàng hóa. Màu nhấn chỉ nằm ở viền cửa, khung cửa sổ, dải chân tường và số cabin. Đổi thử màu ở mục Màu vỏ.',s:[['9.1%','nhóm chưa dùng thấy container trông giống nhà kho']]},
+  paint:{t:'Vỏ sơn nền sáng, màu nhấn ở viền',b:'Nền sáng phản nhiệt và thoát khỏi bảng màu container hàng hóa. Màu nhấn chỉ nằm ở viền cửa, khung cửa sổ, dải chân tường và số container. Đổi thử màu ở mục Màu vỏ.',s:[['9.1%','nhóm chưa dùng thấy container trông giống nhà kho']]},
   awning:{t:'Mái hiên và cây xanh ở lối vào',b:'Mái hiên nhỏ che nắng mưa ở cửa, chậu cây hai bên làm lối vào bớt khô cứng và giảm hấp nhiệt.',s:[['40.4%','thấy không gian container nhỏ, bí']]}
 };
 
 /* ================= dữ liệu từ 3 bản vẽ (cm, gốc = góc trong phía tây bắc) ================= */
 const CABINS=[
-{ id:'c1',no:'01',name:'Cabin 1',sub:'Nhóm A',kind:'group',seats:9,W:580,D:225,src:'Bản vẽ 1',
+{ id:'c1',no:'01',name:'Container 1',sub:'Nhóm A',kind:'group',seats:9,W:580,D:225,src:'Bản vẽ 1',
   walls:{N:[{t:'win',a:100,b:480}],S:[{t:'win',a:152.4,b:242.1},{t:'door',a:374.6,b:444.9,hinge:'b'}],W:[{t:'win',a:62.5,b:162.5}],E:[]},
   table:{x0:111.6,x1:459.2,y0:54.7,y1:168.4},
   chairs:[[142.6,34,'S'],[234.4,34,'S'],[331.3,34,'S'],[422.2,34,'S'],[143.5,191.3,'N'],[235.1,191.3,'N'],[332,191.3,'N'],[76.1,113.2,'E'],[488.4,113.2,'W']],
   bin:[531.7,36], board:{w:'E',u:112.5,len:160}, ac:{w:'N',u:530}, ap:{w:'N',u:50},
   panels:[['S',12,140],['S',252,318],['N',8,92],['N',488,572]], poster:{w:'S',u:350},
-  number:{w:'S',u:290}, qr:{w:'S',u:356}, label:{w:'S',u:170,h:0.2,text:'CABIN HỌC NHÓM · TÒA D'},
+  number:{w:'S',u:290}, qr:{w:'S',u:356}, label:{w:'S',u:170,h:0.2,text:'CONTAINER HỌC NHÓM · TÒA D'},
   planters:[['S',330],['S',490]],
   lights:[[145,112.5],[290,112.5],[435,112.5]],
   eye:{cam:[30,205,1.6],look:[470,70,0.95]}, outDir:[0.55,1], cutDir:[-0.5,1],
@@ -264,13 +264,13 @@ const CABINS=[
          ['window','should',{w:['N',290,1.62,-0.02]}],['acoustic','should',{w:['N',50,1.45,-0.04]}],['board','should',{w:['E',112.5,1.45,-0.04]}],['chair','should',{p:[234.4,15,0.92]}],
          ['paint','ext',{w:['S',515,1.05,0.18]},'out'],['awning','ext',{w:['S',409.75,2.28,0.45]},'out']]
 },
-{ id:'c2',no:'02',name:'Cabin 2',sub:'Nhóm B',kind:'group',seats:9,W:225,D:580,src:'Bản vẽ 3',
+{ id:'c2',no:'02',name:'Container 2',sub:'Nhóm B',kind:'group',seats:9,W:225,D:580,src:'Bản vẽ 3',
   walls:{N:[],S:[{t:'win',a:62.5,b:162.6}],W:[{t:'win',a:101,b:480}],E:[{t:'door',a:149,b:218.5,hinge:'a'},{t:'win',a:320,b:370.5}]},
   table:{x0:54.1,x1:169.2,y0:116,y1:465.7},
   chairs:[[31.3,152.8,'E'],[31.3,244.3,'E'],[31.3,337,'E'],[31.3,426.3,'E'],[191.6,244.3,'W'],[191.6,337,'W'],[191.6,426.3,'W'],[111.7,84.7,'S'],[111.3,495.3,'N']],
   bin:[52.5,40.2], board:{w:'N',u:112.5,len:160}, ac:{w:'W',u:530}, ap:{w:'W',u:50},
   panels:[['E',270,314],['E',380,570],['W',8,93],['W',488,572]], poster:{w:'E',u:245},
-  number:{w:'E',u:285}, qr:{w:'E',u:234}, label:{w:'E',u:450,h:0.2,text:'CABIN HỌC NHÓM · TÒA D'},
+  number:{w:'E',u:285}, qr:{w:'E',u:234}, label:{w:'E',u:450,h:0.2,text:'CONTAINER HỌC NHÓM · TÒA D'},
   planters:[['E',104],['E',264]],
   lights:[[112.5,145],[112.5,290],[112.5,435]],
   eye:{cam:[200,562,1.6],look:[50,120,0.95]}, outDir:[1,-0.42], cutDir:[1,0.62],
@@ -278,7 +278,7 @@ const CABINS=[
          ['window','should',{w:['W',290,1.62,-0.02]}],['acoustic','should',{w:['W',50,1.45,-0.04]}],['board','should',{w:['N',112.5,1.45,-0.04]}],['chair','should',{p:[12,337,0.92]}],
          ['paint','ext',{w:['E',520,1.05,0.18]},'out'],['awning','ext',{w:['E',183.75,2.28,0.45]},'out']]
 },
-{ id:'c3',no:'03',name:'Cabin 3',sub:'Cá nhân',kind:'solo',seats:7,W:580,D:225,src:'Bản vẽ 2',
+{ id:'c3',no:'03',name:'Container 3',sub:'Cá nhân',kind:'solo',seats:7,W:580,D:225,src:'Bản vẽ 2',
   walls:{N:[{t:'win',a:100,b:480}],S:[],W:[{t:'win',a:62.5,b:162.5}],E:[{t:'win',a:28.5,b:78.8},{t:'door',a:121.3,b:190.9,hinge:'b'}]},
   desks:[{x0:99.2,x1:219.7,y0:4.4,y1:59.9,g:'G1',f:'N'},{x0:226.1,x1:346.6,y0:4.4,y1:59.9,g:'G2',f:'N'},{x0:352.9,x1:473.5,y0:4.4,y1:59.9,g:'G3',f:'N'},
          {x0:0,x1:73.9,y0:171.5,y1:225,g:'G4',f:'W'},{x0:181.3,x1:255,y0:171.5,y1:225,g:'G5',f:'E'},{x0:255,x1:330.6,y0:171.5,y1:225,g:'G6',f:'W'},{x0:433.6,x1:510,y0:171.5,y1:225,g:'G7',f:'E'}],
@@ -286,7 +286,7 @@ const CABINS=[
   chairs:[[159.5,81.5,'N'],[285.4,81.5,'N'],[413.2,81.5,'N'],[93.6,199.5,'W'],[158.7,199.5,'E'],[350.3,199.5,'W'],[411.5,199.5,'E']],
   bin:[43.8,32.1], ac:{w:'N',u:530}, ap:{w:'N',u:50},
   panels:[['S',6,118],['S',132,248],['S',262,374],['S',388,504],['S',516,574],['N',8,92],['N',488,572]], poster:{w:'E',u:100},
-  number:{w:'S',u:522}, qr:{w:'E',u:100}, label:{w:'S',u:250,h:0.32,text:'CABIN TỰ HỌC · TÒA D'},
+  number:{w:'S',u:522}, qr:{w:'E',u:100}, label:{w:'S',u:250,h:0.32,text:'CONTAINER TỰ HỌC · TÒA D'},
   planters:[['E',76],['S',546]],
   lights:[[145,112.5],[290,112.5],[435,112.5]],
   eye:{cam:[548,108,1.55],look:[40,120,0.82]}, outDir:[1,0.85], cutDir:[0.9,1],
@@ -418,7 +418,10 @@ function spaced(g,text,x,y,sp,align){
 function numberCanvas(c,cv){
   cv=cv||document.createElement('canvas');cv.width=560;cv.height=700;const g=cv.getContext('2d');g.clearRect(0,0,560,700);
   g.fillStyle=paint.accent;g.textBaseline='alphabetic';
-  g.font='700 72px "Be Vietnam Pro", sans-serif';spaced(g,'CABIN',280,92,18,'center');
+  // "CONTAINER" is wider than the old label: shrink font and spacing to fit the 560px plate.
+  g.font='700 72px "Be Vietnam Pro", sans-serif';
+  {const word='CONTAINER',raw=[...word].reduce((a,ch)=>a+g.measureText(ch).width,0)+18*(word.length-1),k=Math.min(1,520/raw);
+   g.font='700 '+Math.floor(72*k)+'px "Be Vietnam Pro", sans-serif';spaced(g,word,280,92,18*k,'center');}
   g.font='390px "Saira Stencil One", "Arial Black", sans-serif';
   const w=[...c.no].reduce((a,ch)=>a+g.measureText(ch).width,0);if(w>520)g.font=Math.floor(390*520/w)+'px "Saira Stencil One", "Arial Black", sans-serif';
   spaced(g,c.no,280,610,6,'center');
@@ -437,7 +440,7 @@ function qrCanvas(c,img){
   g.fillStyle='#FFFFFF';rr(g,0,0,360,520,26);g.fill();
   g.fillStyle='#1D2124';g.font='700 36px "Be Vietnam Pro", sans-serif';g.textAlign='center';g.fillText('Quét xem',180,58);g.fillText('lịch trống',180,100);
   if(img)g.drawImage(img,40,126,280,280);
-  g.font='500 30px "JetBrains Mono", monospace';g.fillStyle='#5A6266';g.fillText('CABIN '+c.no,180,462);
+  g.font='500 30px "JetBrains Mono", monospace';g.fillStyle='#5A6266';g.fillText('CONTAINER '+c.no,180,462);
   return cv;
 }
 function seatCanvas(label){
@@ -457,7 +460,7 @@ function posterCanvas(c){
   return cv;
 }
 
-/* ================= build one cabin ================= */
+/* ================= build one container ================= */
 const cabins=[];
 function buildCabin(c,qrImg){
   const root=new THREE.Group();root.visible=false;scene.add(root);
@@ -573,7 +576,7 @@ function buildCabin(c,qrImg){
   // sơ đồ bàn ghế
   {const w=c.poster.w;const m=new THREE.Mesh(new THREE.PlaneGeometry(0.3,0.43),new THREE.MeshStandardMaterial({map:tex(posterCanvas(c)),roughness:0.8}));m.position.copy(WP(c,w,c.poster.u,1.45,-0.003));m.rotation.y=IN_ROT[w];onWall(w,m);}
 
-  // biển số cabin (sơn trực tiếp)
+  // biển số container (sơn trực tiếp)
   const numCv=numberCanvas(c);const numTex=tex(numCv);
   {const w=c.number.w;const m=new THREE.Mesh(new THREE.PlaneGeometry(0.5,0.625),new THREE.MeshStandardMaterial({map:numTex,transparent:true,roughness:0.6,depthWrite:false}));m.position.copy(WP(c,w,c.number.u,1.52,T+RIB_D+0.004));m.rotation.y=OUT_ROT[w];m.renderOrder=2;onWall(w,m);}
   // dòng tên
@@ -666,7 +669,7 @@ function renderTabs(){
 }
 function renderSide(){
   const k=cabins[cur],c=k.c;
-  $('#side-head').innerHTML=`<div class="eyebrow">${c.kind==='group'?'Cabin học nhóm':'Cabin tự học'}</div><h2>${c.name} · ${c.sub}</h2>
+  $('#side-head').innerHTML=`<div class="eyebrow">${c.kind==='group'?'Container học nhóm':'Container tự học'}</div><h2>${c.name} · ${c.sub}</h2>
     <div class="chips"><span class="chip">${c.seats} chỗ ngồi</span><span class="chip mono">${c.W} × ${c.D} cm</span><span class="chip">${c.src}</span></div>`;
   $('#items').innerHTML=k.items.map(it=>`<li><button type="button" class="item" id="item-${c.id}-${it.num}" data-n="${it.num}" aria-current="${activeItem===it.num}"><span class="dot p-${it.pri}">${it.num}</span><span class="t">${esc(it.info.t)}</span><span class="where">${it.scope==='out'?'bên ngoài':'bên trong'}</span></button></li>`).join('');
 }
@@ -818,8 +821,8 @@ new MutationObserver(applyTheme).observe(document.documentElement,{attributes:tr
 
 /* ================= start ================= */
 async function start(){
-  const sample='CABIN HỌC NHÓM TỰ TÒA D Quét xem lịch trống SƠ ĐỒ BÀN GHẾ';
-  try{await Promise.race([Promise.all([document.fonts.load('700 64px "Be Vietnam Pro"',sample),document.fonts.load('400 64px "Saira Stencil One"','CABIN 0123'),document.fonts.load('500 32px "JetBrains Mono"','G1 CABIN 580 cm')]),new Promise(r=>setTimeout(r,3000))]);}catch(e){}
+  const sample='CONTAINER HỌC NHÓM TỰ TÒA D Quét xem lịch trống SƠ ĐỒ BÀN GHẾ';
+  try{await Promise.race([Promise.all([document.fonts.load('700 64px "Be Vietnam Pro"',sample),document.fonts.load('400 64px "Saira Stencil One"','CONTAINER 0123'),document.fonts.load('500 32px "JetBrains Mono"','G1 CONTAINER 580 cm')]),new Promise(r=>setTimeout(r,3000))]);}catch(e){}
   const qrImg=await new Promise(r=>{const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=QR_SRC;});
   CABINS.forEach(c=>cabins.push(buildCabin(c,qrImg)));
   renderSwatches();

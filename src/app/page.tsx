@@ -8,14 +8,14 @@ const features = [
   {
     href: BOOKING_HREF,
     icon: CalendarCheck,
-    title: "Đăng ký chỗ ngồi Cabin Tòa D",
-    desc: "Xem lịch trống, đặt cabin nhóm hoặc ghế cá nhân và nhận mã QR mở cửa.",
+    title: "Đăng ký chỗ ngồi Container Tòa D",
+    desc: "Xem lịch trống, đặt container nhóm hoặc ghế cá nhân và nhận mã QR mở cửa.",
   },
   {
     href: MODEL_HREF,
     icon: Box,
-    title: "Mô hình 3D Cabin Tòa D",
-    desc: "Xoay, cắt mái và xem mặt bằng 3 cabin trước khi đặt chỗ.",
+    title: "Mô hình 3D Container Tòa D",
+    desc: "Xoay, cắt mái và xem mặt bằng 3 container trước khi đặt chỗ.",
   },
 ];
 
@@ -94,9 +94,9 @@ export default function Home() {
       />
 
       <footer className="border-t border-ftu pt-6 pb-8 text-sm text-[#555]">
-        <p className="font-medium text-ftu">Cabin 2.0 · Dự án nhóm 3 KAIZENZ</p>
+        <p className="font-medium text-ftu">Container 2.0 · Dự án nhóm 3 KAIZENZ</p>
         <p className="mt-1">
-          Bản demo đề xuất chức năng đặt chỗ Cabin Tòa D, dựng lại giao diện kiểu FTU Gate để
+          Bản demo đề xuất chức năng đặt chỗ Container Tòa D, dựng lại giao diện kiểu FTU Gate để
           trình diễn. Không phải hệ thống chính thức của Trường Đại học Ngoại thương; tin tức
           và dữ liệu sinh viên chỉ là ví dụ.
         </p>
